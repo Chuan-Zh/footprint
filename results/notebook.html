@@ -1,5 +1,8 @@
 <html>
     <head>
+        <!-- character encode for chiness-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" ></meta> 
+
         <title>Footprinting method for prokaryotic motif finding</title>
     </head>
     <body>
@@ -10,6 +13,23 @@
 
         <p>Build the directory struct, move all the old results to results/2013-09-01/</p>
         <p>Set up git and ignore list</p>
+
+        <h2>Qin's email and data:</h2>
+        <p>/home/xynlab/maqin/Project-in-process/RegulonPrediction/CRS-PCS-score
+        对于cutoff是0.39的和original的分别生成了几个文件。*.edge.1/2/3跟之前的意义是一样的。你可以比较一下regulon中operon pair的rank变化。目前的边比上一个版本少了很多，我调整了cutoff的取值办法。你可以看看目前的regulon的稠密程度如何。*.chars就是离散化之后的矩阵。*.clusters是预测出来的结果。
+        </p>
+        <p>Download these data to data/2013-09-10/CRS-PCS-score</p>
+
+        <h2>dropbox change</h2>
+        <p>我重新organize了我们在dropbox的共享文件夹。细节你可以在ChangeLog里面看到。
+        只要在我们的项目过程中有比较固定的数据和结果（就像我们的similarity data matrix），我们就上传到这个目录里面，并且在changelog里面加上一个说明。</p>
+
+        <h2>graph analysis 2013-09-02</h2>
+        <p>use edges2table.pl transfer edge file to graph file for regulon_subgraph.py.</p>
+        <p>In folder results/2013-09-01, use runall.pl to do the subgraph density analysis,
+        results in results/2013-09-01/ori and /sim_cut folder.</p>
+
+
 
     </body>
 
