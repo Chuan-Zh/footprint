@@ -34,7 +34,7 @@ def read_regulon(file="../data/regulon_by_first_gene.txt"):
 
     return rv
 
-def read_regulon(file="../data/regulon_by_first_gene.txt"):
+def read_regulon_g2r(file="../data/regulon_by_first_gene.txt"):
     rv = {}
     reg_now = ''
 
