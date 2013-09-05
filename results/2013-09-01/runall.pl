@@ -26,7 +26,7 @@ my $cmd;
 for my $i (1..3) {
     $cmd = "perl $bin_d/edges2table.pl $crs_d/$edge_ori[$i-1] > ori/edge_$i.tsv";
     print $cmd, "\n";
-    system($cmd) if $run;
+    system($cmd) if ($run and !-e "ori/edge_$i.tsv");
 
     $cmd = "python $bin_d/regulon_subgraph.py ori/edge_$i.tsv > ori/edge_$i.stat";
     print $cmd, "\n";
@@ -36,7 +36,7 @@ for my $i (1..3) {
 for my $i (1..3) {
     $cmd = "perl $bin_d/edges2table.pl $crs_d/$edge_cut[$i-1] > sim_cut/edge_$i.tsv";
     print $cmd, "\n";
-    system($cmd) if $run;
+    system($cmd) if ($run and !-e "ori/edge_$i.tsv");
 
     $cmd = "python $bin_d/regulon_subgraph.py sim_cut/edge_$i.tsv > sim_cut/edge_$i.stat";
     print $cmd, "\n";
