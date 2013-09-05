@@ -32,7 +32,15 @@
         <p>In folder results/2013-90-01, use summary.r do the operon pair rank analysis, e.g. count operon pair edges in the top 1000 edges with the highest crs score. Result write to  reg_pair_in_top_1000.stat, not as we expect.</p>
         <p>Also add a script to check the graph degree in bin/degree_dist.py</p>
         <h2>Further analysis 2013-09-04</h2>
-        <p>Talk with Qin on last results. We will include all operon on the analysis, count the average zscore, and check which regulons appear in the top 1000 or so edges.</p>
+        <p>Talk with Qin on last results. We will include:</p>
+        <ol>
+            <li>all operon on the analysis</li>
+            <li>count the average zscore</li>
+            <li>check which regulons appear in the top 1000 or so edges</li>
+            <li>LOO per matrix site score</li>
+        </ol>
+        <p>LOO per matrix data: data/2013-09-05</p>
+
         <p>For the question that zscore drop amonge edge_1/2/3 files, Qin gave following explain</p>
         <p>For the question of why z-score decreases from edge-1 to edge-3, I have checked my code and found that I did the normalization in the process as follows,
         for an edge e=v1v2

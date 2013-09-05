@@ -50,6 +50,18 @@ def read_regulon_g2r(file="../data/regulon_by_first_gene.txt"):
 
     return rv
 
+
+def read_LOO(file):
+    rv = {}
+    f=open(file)
+    for l in f:
+        l = l.rstrip()
+        (reg, loo) = l.split()
+        rv[reg] = float(loo)
+
+    return rv
+
+
 def edge_density(edge_n, node_n):
     """probobility of having an edge between two nodes"""
     try:
@@ -97,8 +109,10 @@ if __name__ == "__main__":
 
     bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
     regulon_f = os.path.join(bindir, "../data/regulon_by_first_gene.txt");
+    loo_f = os.path.join(bindir, "../data/LOO_per_matrix_site.tsv");
 
     G = crs_graph(crs_f)
+    LOO = read_LOO(loo_f)
 
     print("graph has %d nodes with %d edges, edges to nodes ratio: %f, edge average zscore: %f"\
             %(nx.number_of_nodes(G),
@@ -109,12 +123,17 @@ if __name__ == "__main__":
 
     regulon = read_regulon(regulon_f)
 
-    print("reg\tsize\tnodes\tedges\tratio\tavg_zscore")
+    print("reg\tLOO\tsize\tnodes\tedges\tratio\tavg_zscore")
     for reg in regulon.keys():
         if len(regulon[reg]) > 2:
             H = G.subgraph(regulon[reg])
-            print("%s\t%d\t%d\t%d\t%f\t%f"\
+
+            loo = -1
+            if reg in LOO: loo = LOO[reg]
+
+            print("%s\t%g\t%d\t%d\t%d\t%f\t%f"\
                     %(reg,
+                        loo,
                         len(regulon[reg]),
                         nx.number_of_nodes(H),
                         nx.number_of_edges(H),
