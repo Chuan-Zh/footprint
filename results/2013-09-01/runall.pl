@@ -23,12 +23,17 @@ mkdir 'ori' unless -e 'ori';
 mkdir 'sim_cut' unless -e 'sim_cut';
 
 my $cmd;
+my $top_n = 1000;
 for my $i (1..3) {
     $cmd = "perl $bin_d/edges2table.pl $crs_d/$edge_ori[$i-1] > ori/edge_$i.tsv";
     print $cmd, "\n";
     system($cmd) if ($run and !-e "ori/edge_$i.tsv");
 
     $cmd = "python $bin_d/regulon_subgraph.py ori/edge_$i.tsv > ori/edge_$i.stat";
+    print $cmd, "\n";
+    system($cmd) if $run;
+
+    $cmd = "bash reg_in_top_n.sh ori/edge_$i.tsv $top_n > ori/edge_$i\_reg_in_top_$top_n.stat";
     print $cmd, "\n";
     system($cmd) if $run;
 }
@@ -39,6 +44,10 @@ for my $i (1..3) {
     system($cmd) if ($run and !-e "ori/edge_$i.tsv");
 
     $cmd = "python $bin_d/regulon_subgraph.py sim_cut/edge_$i.tsv > sim_cut/edge_$i.stat";
+    print $cmd, "\n";
+    system($cmd) if $run;
+
+    $cmd = "bash reg_in_top_n.sh sim_cut/edge_$i.tsv $top_n > sim_cut/edge_$i\_reg_in_top_$top_n.stat";
     print $cmd, "\n";
     system($cmd) if $run;
 }
