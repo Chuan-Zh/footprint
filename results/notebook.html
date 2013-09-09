@@ -4,9 +4,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" ></meta> 
 
         <title>Footprinting method for prokaryotic motif finding</title>
+        <style>
+            #mark
+            {
+                background-color:yellow;
+            }
+            div
+            {
+                margin: 2px auto;
+                padding: 0.4em;
+                width:1024px;
+                padding-top:25px;
+                padding-bottom:25px;
+            }
+        </style>
     </head>
-    <body>
+</head>
+<body>
 
+    <div>
         <h1>Initialization 2013-09-01</h1>
         <p>After reading the paper 'A Quick Guide to Organizing Computational Biology
         Projects', I decide to reorgnize things in the way as suggested in this paper.</p>
@@ -46,8 +62,29 @@
         for an edge e=v1v2
         w'(e) = w(e)x(w(v1)+w(v2))/w(vmax), where vmax represent the vertex with the largest weight.
         Hence the score will decrease continuously and cannot be compared among different edge files. But the trend is right.</p>
+        <p>Qin joined the results together in xlsx format, see results/2013-09-01/regulon-09-06.xlsx</p>
+
+        <h2>Discussion with Qin 2013-09-08</h2>
+        <ol>
+            <li>calculate the clustering/transitivity of each regulon, like the ratio in current results. the definition can be found in shared folder (References\Network Property). I also attach it in case dropbox has some delay (Page 180-184).</li>
+            <li>For the results of Top X edges, (X can be 500, 1000, 1500 ...), compare CRS, PCS and the distribution of randomly picked X edges, in terms of number of edges in regulon and number of regulons covered by such edges among the picked ones. I expect the following figure<img src="notebook/image.png"> </li>
+            <li>For the results of ratio and average edge weight (may use clustering instead of ratio) for each regulon, we should compare CRS and PCS like<img src="notebook/image2.png">
+            </li>
+            <li>Classify the regulons into two groups roughly based on the LOO score (please recheck it as the NAP proteins, like H-NS, Fis, are reported as conserved ones compared to other TFs), then we expect to see the non-conserved regulons can get better ratio/clustering properties during we modifying edge weight by the two adjacent node weights<img src="notebook/image3.png"></li>
+            <li>Another genome-scale operon relatedness score may be used to compare with CRS and PCS in our paper:
+            <a href="http://nar.oxfordjournals.org/content/33/9/2822.short">paper</a>
+
+            We can make our paper more convinced in such a way.</li>
+        </ol>
 
 
-    </body>
+
+
+
+
+
+
+    </div>
+</body>
 </html>
 
