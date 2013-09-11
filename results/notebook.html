@@ -19,72 +19,69 @@
             }
         </style>
     </head>
-</head>
-<body>
+    <body>
 
-    <div>
-        <h1>Initialization 2013-09-01</h1>
-        <p>After reading the paper 'A Quick Guide to Organizing Computational Biology
-        Projects', I decide to reorgnize things in the way as suggested in this paper.</p>
+        <div>
+            <h1>Initialization 2013-09-01</h1>
+            <p>After reading the paper 'A Quick Guide to Organizing Computational Biology
+            Projects', I decide to reorgnize things in the way as suggested in this paper.</p>
 
-        <p>Build the directory struct, move all the old results to results/2013-09-01/</p>
-        <p>Set up git and ignore list</p>
+            <p>Build the directory struct, move all the old results to results/2013-09-01/</p>
+            <p>Set up git and ignore list</p>
 
-        <h2>Qin's email and data:</h2>
-        <p>/home/xynlab/maqin/Project-in-process/RegulonPrediction/CRS-PCS-score
-        对于cutoff是0.39的和original的分别生成了几个文件。*.edge.1/2/3跟之前的意义是一样的。你可以比较一下regulon中operon pair的rank变化。目前的边比上一个版本少了很多，我调整了cutoff的取值办法。你可以看看目前的regulon的稠密程度如何。*.chars就是离散化之后的矩阵。*.clusters是预测出来的结果。
-        </p>
-        <p>Download these data to data/2013-09-10/CRS-PCS-score</p>
+            <h2>Qin's email and data:</h2>
+            <p>/home/xynlab/maqin/Project-in-process/RegulonPrediction/CRS-PCS-score
+            对于cutoff是0.39的和original的分别生成了几个文件。*.edge.1/2/3跟之前的意义是一样的。你可以比较一下regulon中operon pair的rank变化。目前的边比上一个版本少了很多，我调整了cutoff的取值办法。你可以看看目前的regulon的稠密程度如何。*.chars就是离散化之后的矩阵。*.clusters是预测出来的结果。
+            </p>
+            <p>Download these data to data/2013-09-10/CRS-PCS-score</p>
 
-        <h2>dropbox change</h2>
-        <p>我重新organize了我们在dropbox的共享文件夹。细节你可以在ChangeLog里面看到。
-        只要在我们的项目过程中有比较固定的数据和结果（就像我们的similarity data matrix），我们就上传到这个目录里面，并且在changelog里面加上一个说明。</p>
+            <h2>dropbox change</h2>
+            <p>我重新organize了我们在dropbox的共享文件夹。细节你可以在ChangeLog里面看到。
+            只要在我们的项目过程中有比较固定的数据和结果（就像我们的similarity data matrix），我们就上传到这个目录里面，并且在changelog里面加上一个说明。</p>
 
-        <h2>graph analysis 2013-09-02</h2>
-        <p>use edges2table.pl transfer edge file to graph file for regulon_subgraph.py.</p>
-        <p>In folder results/2013-09-01, use runall.pl to do the subgraph density analysis,
-        results in results/2013-09-01/ori and /sim_cut folder.</p>
-        <h2>graph analysis 2013-09-03</h2>
-        <p>In folder results/2013-90-01, use summary.r do the operon pair rank analysis, e.g. count operon pair edges in the top 1000 edges with the highest crs score. Result write to  reg_pair_in_top_1000.stat, not as we expect.</p>
-        <p>Also add a script to check the graph degree in bin/degree_dist.py</p>
-        <h2>Further analysis 2013-09-04</h2>
-        <p>Talk with Qin on last results. We will include:</p>
-        <ol>
-            <li>all operon on the analysis</li>
-            <li>count the average zscore</li>
-            <li>check which regulons appear in the top 1000 or so edges</li>
-            <li>LOO per matrix site score</li>
-        </ol>
-        <p>LOO per matrix data: data/2013-09-05</p>
+            <h2>graph analysis 2013-09-02</h2>
+            <p>use edges2table.pl transfer edge file to graph file for regulon_subgraph.py.</p>
+            <p>In folder results/2013-09-01, use runall.pl to do the subgraph density analysis,
+            results in results/2013-09-01/ori and /sim_cut folder.</p>
+            <h2>graph analysis 2013-09-03</h2>
+            <p>In folder results/2013-90-01, use summary.r do the operon pair rank analysis, e.g. count operon pair edges in the top 1000 edges with the highest crs score. Result write to  reg_pair_in_top_1000.stat, not as we expect.</p>
+            <p>Also add a script to check the graph degree in bin/degree_dist.py</p>
+            <h2>Further analysis 2013-09-04</h2>
+            <p>Talk with Qin on last results. We will include:</p>
+            <ol>
+                <li>all operon on the analysis</li>
+                <li>count the average zscore</li>
+                <li>check which regulons appear in the top 1000 or so edges</li>
+                <li>LOO per matrix site score</li>
+            </ol>
+            <p>LOO per matrix data: data/2013-09-05</p>
 
-        <p>For the question that zscore drop amonge edge_1/2/3 files, Qin gave following explain</p>
-        <p>For the question of why z-score decreases from edge-1 to edge-3, I have checked my code and found that I did the normalization in the process as follows,
-        for an edge e=v1v2
-        w'(e) = w(e)x(w(v1)+w(v2))/w(vmax), where vmax represent the vertex with the largest weight.
-        Hence the score will decrease continuously and cannot be compared among different edge files. But the trend is right.</p>
-        <p>Qin joined the results together in xlsx format, see results/2013-09-01/regulon-09-06.xlsx</p>
+            <p>For the question that zscore drop amonge edge_1/2/3 files, Qin gave following explain</p>
+            <p>For the question of why z-score decreases from edge-1 to edge-3, I have checked my code and found that I did the normalization in the process as follows,
+            for an edge e=v1v2
+            w'(e) = w(e)x(w(v1)+w(v2))/w(vmax), where vmax represent the vertex with the largest weight.
+            Hence the score will decrease continuously and cannot be compared among different edge files. But the trend is right.</p>
+            <p>Qin joined the results together in xlsx format, see results/2013-09-01/regulon-09-06.xlsx</p>
 
-        <h2>Discussion with Qin 2013-09-08</h2>
-        <ol>
-            <li>calculate the clustering/transitivity of each regulon, like the ratio in current results. the definition can be found in shared folder (References\Network Property). I also attach it in case dropbox has some delay (Page 180-184).</li>
-            <li>For the results of Top X edges, (X can be 500, 1000, 1500 ...), compare CRS, PCS and the distribution of randomly picked X edges, in terms of number of edges in regulon and number of regulons covered by such edges among the picked ones. I expect the following figure<img src="notebook/image.png"> </li>
-            <li>For the results of ratio and average edge weight (may use clustering instead of ratio) for each regulon, we should compare CRS and PCS like<img src="notebook/image2.png">
-            </li>
-            <li>Classify the regulons into two groups roughly based on the LOO score (please recheck it as the NAP proteins, like H-NS, Fis, are reported as conserved ones compared to other TFs), then we expect to see the non-conserved regulons can get better ratio/clustering properties during we modifying edge weight by the two adjacent node weights<img src="notebook/image3.png"></li>
-            <li>Another genome-scale operon relatedness score may be used to compare with CRS and PCS in our paper:
-            <a href="http://nar.oxfordjournals.org/content/33/9/2822.short">paper</a>
+            <h2>Discussion with Qin 2013-09-08</h2>
+            <ol>
+                <li>calculate the clustering/transitivity of each regulon, like the ratio in current results. the definition can be found in shared folder (References\Network Property). I also attach it in case dropbox has some delay (Page 180-184).</li>
+                <li>For the results of Top X edges, (X can be 500, 1000, 1500 ...), compare CRS, PCS and the distribution of randomly picked X edges, in terms of number of edges in regulon and number of regulons covered by such edges among the picked ones. I expect the following figure<img src="notebook/image.png"> </li>
+                <li>For the results of ratio and average edge weight (may use clustering instead of ratio) for each regulon, we should compare CRS and PCS like<img src="notebook/image2.png">
+                </li>
+                <li>Classify the regulons into two groups roughly based on the LOO score (please recheck it as the NAP proteins, like H-NS, Fis, are reported as conserved ones compared to other TFs), then we expect to see the non-conserved regulons can get better ratio/clustering properties during we modifying edge weight by the two adjacent node weights<img src="notebook/image3.png"></li>
+                <li>Another genome-scale operon relatedness score may be used to compare with CRS and PCS in our paper:
+                <a href="http://nar.oxfordjournals.org/content/33/9/2822.short">paper</a>
 
-            We can make our paper more convinced in such a way.</li>
-        </ol>
+                We can make our paper more convinced in such a way.</li>
+            </ol>
 
+            <h2>Combine data and do more statistic in folder 2013-09-10</h2>
 
+            <p>Combined various data with score_combine.pl</p>
+            <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that.</p>
 
-
-
-
-
-
-    </div>
-</body>
+        </div>
+    </body>
 </html>
 
