@@ -80,8 +80,17 @@
 
             <p>Combined various data with score_combine.pl</p>
             <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that.</p>
+            <h2> talk with Qin for network cleanup</h2>
+            <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that. Qin confirmed this is right</p>
+            <p>get the partial correlation score for each pair of genes (in R)</p>
+            <xmp>
+                    library("corpcor")
+                    x<-read.table("ortholog.table.20")
+                    y<-cor.shrink(t(x))
+                    z<-cor2pcor(y)
+                    write(z, "ortholog.table.20.pcormatrix", ncolumns =2965  sep = "\t")
+            </xmp>
 
         </div>
     </body>
 </html>
-

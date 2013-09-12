@@ -1,0 +1,5 @@
+library("corpcor")
+x<-read.table("ortholog.table.20")
+y<-cor.shrink(t(x))
+z<-cor2pcor(y)
+write(z, "ortholog.table.20.pcormatrix", ncolumns =2965  sep = "\t")
