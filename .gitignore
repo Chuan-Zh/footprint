@@ -12,4 +12,5 @@ data/
 *.xlsx
 tmp
 *.tmp
+*.pdf
 
