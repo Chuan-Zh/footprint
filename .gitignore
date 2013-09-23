@@ -13,4 +13,6 @@ data/
 tmp
 *.tmp
 *.pdf
+function_relatedness_hongwei_NAR_2005
+*.rdata
 
