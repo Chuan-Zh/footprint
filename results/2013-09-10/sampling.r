@@ -2,6 +2,8 @@
 
 dd <- read.table("data.tsv", header=TRUE)
 ddCrs <- dd[!is.na(dd$raw_crs), ]
+#> dim(ddCrs)
+#[1] 2550345      11
 
 set.seed(123)
 #ddCrs=load("ddCrs")
@@ -33,6 +35,18 @@ topPcs_1286 <- countInRegulonEdge(ddpcs[ order(ddpcs$pcs_1286, decreasing=TRUE)[
 #
 #$regulon
 #[1] 21
+
+ddCrs_merge_cmb_score <- merge(ddCrs, cmb_score, by=c("opr1", "opr2"))
+#> dim(ddCrs_merge_cmb_score)
+#[1] 638731     12
+top_cmb_score <- countInRegulonEdge(ddCrs_merge_cmb_score[ order(ddCrs_merge_cmb_score$combined_score, decreasing=TRUE)[1:n], ])
+#> top_cmb_score
+#$inRegulonEdge
+#[1] 190
+#
+#$regulon
+#[1] 23
+ 
 
 countInRegulonEdge <- function(data) {
     rv = list() 

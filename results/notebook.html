@@ -99,10 +99,18 @@
 
             <h2>Talk with Qin 09-16</h2>
             <p>HongWei's score</p>
-            <p>Downloaded from maqin@zcluster:~/DATA/function_relatedness_hongwei_NAR_2005</P
+            <p>Downloaded from maqin@zcluster:~/DATA/function_relatedness_hongwei_NAR_2005</p>
             <p>columns are gene1, gene2, combined-score, neighborhood score, phylogenetic score, go score, and code indicating whether the two genes belong to the same known module(0, for no, 1 for operon, 2 for regulon and 3 for pathway)</p>
             <p>regulon cluster</p>
             <p>read network work clear</p>
+
+            <h2>New multigraph based approach</h2>
+
+            <p>After several talk with Qin, we decide to try mulitgraph for the representation of gene regulation network.</p>
+            <p>For an edge between opr1 and opr2, we will record which two motifs this edge is actually linking, and construct a graph with node be opr motif combination.</p>
+            <p>The table columns should be node 1(oprid_a_motif_id), node2(oprid_b_motif_id), similarity, zscore, degree of node 1, degree of node 2, common neighbour of node 1 and node 2.</p>
+            <p>Still we do the all analysis as before.</p>
+            <p>The original results for motif comparison is downloaded from zcsluter:~/footprint/run_closureCompare/results, stored at data/2013-10-08.</p>
 
 
 
