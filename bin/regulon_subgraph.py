@@ -114,16 +114,17 @@ if __name__ == "__main__":
     G = crs_graph(crs_f)
     LOO = read_LOO(loo_f)
 
-    print("graph has %d nodes with %d edges, edges to nodes ratio: %f, edge average zscore: %f"\
+    print("#graph has %d nodes with %d edges, edges to nodes ratio: %f, edge average zscore: %f, transitivity: %f"\
             %(nx.number_of_nodes(G),
                 nx.number_of_edges(G),
                 edge_density(nx.number_of_edges(G), nx.number_of_nodes(G)),
-                edge_average_zscore(G)))
-    print(nx.number_connected_components(G),"connected components")
+                edge_average_zscore(G),
+                nx.transitivity(G)))
+    print("#", nx.number_connected_components(G),"connected components")
 
     regulon = read_regulon(regulon_f)
 
-    print("reg\tLOO\tsize\tnodes\tedges\tratio\tavg_zscore")
+    print("reg\tLOO\tsize\tnodes\tedges\tratio\tavg_zscore\ttransitivity")
     for reg in regulon.keys():
         if len(regulon[reg]) > 2:
             H = G.subgraph(regulon[reg])
@@ -131,13 +132,14 @@ if __name__ == "__main__":
             loo = -1
             if reg in LOO: loo = LOO[reg]
 
-            print("%s\t%g\t%d\t%d\t%d\t%f\t%f"\
+            print("%s\t%g\t%d\t%d\t%d\t%f\t%f\t%f"\
                     %(reg,
                         loo,
                         len(regulon[reg]),
                         nx.number_of_nodes(H),
                         nx.number_of_edges(H),
                         edge_density(nx.number_of_edges(H), nx.number_of_nodes(H)),
-                        edge_average_zscore(H)))
+                        edge_average_zscore(H),
+                        nx.transitivity(H)))
 
 
