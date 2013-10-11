@@ -33,6 +33,12 @@ my ($pcs_216, $pcs_all);
 $pcs_216 = read_pcs($pcs_216_f);
 $pcs_all = read_pcs($pcs_all_f);
 
+# hongwei score
+my $hw_f = "hongwei_combined_score.tsv";
+my $hw_score;
+$hw_score = read_hongwei_score($hw_f);
+
+
 # read regulon file
 my $regulon_f = "../../data/regulon_by_first_gene.txt";
 
@@ -65,7 +71,7 @@ close REG;
 ## output ##
 @operons = sort keys %all_operon;
 
-print "opr1\topr2\traw_crs\tsimilarity\tedge_1\tedge_2\tedge_3\tpcs_216\tpcs_1286\tin_regulon\treg_names\n";  # 11 fields
+print "opr1\topr2\traw_crs\tsimilarity\tedge_1\tedge_2\tedge_3\tpcs_216\tpcs_1286\thw_score\tin_regulon\treg_names\n";  # 12 fields
 while(my $g2 = pop @operons) { # the last one
     foreach my $g1 (@operons) {
         print "$g1\t$g2\t"; # 1, 2
@@ -106,6 +112,12 @@ while(my $g2 = pop @operons) { # the last one
             print "NA\t";
         }
 
+        if(defined $hw_score->{$g1}{$g2}) { # 
+            print "$hw_score->{$g1}{$g2}\t";
+        } else {
+            print "NA\t";
+        }
+
         if(defined $pairGeneInRegulon->{$g1}{$g2}) { # 
             print "$pairGeneInRegulon->{$g1}{$g2}\t";
         } else {
@@ -113,9 +125,9 @@ while(my $g2 = pop @operons) { # the last one
         }
 
         if(defined $pairGeneInRegulonName->{$g1}{$g2}) {
-            print "$pairGeneInRegulonName->{$g1}{$g2}\t";
+            print "$pairGeneInRegulonName->{$g1}{$g2}";
         } else {
-            print "-\t";
+            print "-";
         }
 
         print "\n";
@@ -205,5 +217,33 @@ sub read_raw_crs {
     close IN;
 
     return ($raw_zscore, $raw_similarity);
+}
+
+sub read_hongwei_score {
+    my $f = pop;
+    my $score;
+    open IN, $f or die "Cannot open $f: $!";
+
+    <IN>; # leave the head line
+
+
+    while(<IN>) {
+        chomp;
+        my ($opr1, $opr2, $s) = split;
+        next unless $s ne "";
+        my $snorm = sprintf("%.5f", $s);
+
+        ($opr1, $opr2) = sort ($opr1, $opr2);
+
+        if(!defined $score->{$opr1}{$opr2} || $score->{$opr1}{$opr2} < $snorm) {
+            $score->{$opr1}{$opr2} = $snorm;
+        }
+
+        #$all_operon{$opr1} = 1; # remember operon
+        #$all_operon{$opr2} = 1;
+    }
+    close IN;
+
+    return $score;
 }
 

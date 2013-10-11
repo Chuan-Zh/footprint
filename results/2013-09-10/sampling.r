@@ -46,6 +46,7 @@ top_cmb_score <- countInRegulonEdge(ddCrs_merge_cmb_score[ order(ddCrs_merge_cmb
 #
 #$regulon
 #[1] 23
+# above result is right after validation with updated data with perl
  
 
 countInRegulonEdge <- function(data) {
