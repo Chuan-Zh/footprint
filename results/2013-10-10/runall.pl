@@ -17,5 +17,29 @@ my $output_d2 = "top_10_result";
 mkdir $output_d1 unless -e $output_d1;
 mkdir $output_d2 unless -e $output_d2;
 
-system "perl closurecompare2table.pl $data_d/$ccf1 $data_d/$motif_count_f1 > $output_d1/table.tsv";
-system "perl closurecompare2table.pl $data_d/$ccf2 $data_d/$motif_count_f2 > $output_d2/table.tsv";
+my $cmd;
+print "perl closurecompare2table.pl $data_d/$ccf1 $data_d/$motif_count_f1 > $output_d1/table.tsv\n";
+#system "perl closurecompare2table.pl $data_d/$ccf1 $data_d/$motif_count_f1 > $output_d1/table.tsv";
+$cmd = "python motif_graph_refine.py $output_d1/table.tsv -1 -1 > $output_d1/graph_refined.tsv\n";
+print $cmd;
+#system $cmd;
+$cmd = "perl closurecompare2operontable.pl $data_d/$ccf1 $data_d/$motif_count_f1 > $output_d1/operon_table.tsv\n";
+print $cmd;
+#system $cmd;
+$cmd = "python operon_graph_refine.py $output_d1/operon_table.tsv -1 -1 > $output_d1/operon_table_refined.tsv\n";
+print $cmd;
+system $cmd;
+
+
+
+print "perl closurecompare2table.pl $data_d/$ccf2 $data_d/$motif_count_f2 > $output_d2/table.tsv\n";
+#system "perl closurecompare2table.pl $data_d/$ccf2 $data_d/$motif_count_f2 > $output_d2/table.tsv";
+$cmd = "python motif_graph_refine.py $output_d2/table.tsv -1 -1 > $output_d2/graph_refined.tsv\n";
+print $cmd;
+#system $cmd;
+$cmd = "perl closurecompare2operontable.pl $data_d/$ccf2 $data_d/$motif_count_f2 > $output_d2/operon_table.tsv\n";
+print $cmd;
+#system $cmd;
+$cmd = "python operon_graph_refine.py $output_d2/operon_table.tsv -1 -1 > $output_d2/operon_table_refined.tsv\n";
+print $cmd;
+system $cmd;

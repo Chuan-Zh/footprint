@@ -1,0 +1,24 @@
+reg_table_all.txt is the analysis for the new multigraph and regulon subgraph.
+reg_table_0.5sim.txt  is the same analysis when build the graph but with a similarity cutoff. ( with motif_graph.py)
+
+ortholog_and_motif_count.tsv is a count for ortholog and motifs numbers for each gene. with ortholog_motif_inRegulon_count.pl
+
+Scripts for pick information from raw closure compare output:
+To operon table: nodes are operon
+closurecompare2operontable.pl
+
+To motif table: nodes are motif
+closurecompare2table.pl
+
+Add degree and common neighbour number to above two table to assist analysis and clustering:
+(some of these are ran on zcluter ~/footprint_share to spead up)
+motif_graph.py
+motif_graph_refine.py
+operon_graph.py
+operon_graph_refine.py
+
+ortholog_and_motif_count.tsv
+ortholog_motif_inRegulon_count.pl
+
+top_10_result
+top_30_result

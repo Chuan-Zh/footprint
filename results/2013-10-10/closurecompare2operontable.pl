@@ -1,7 +1,9 @@
 #!/usr/bin/env perl
 #
-# convert closure comparing results to table, each line stands for a similarity edge between
-# two motif, which is named motif graph
+# convert closure comparing results to table, each line is an edge between two operons,
+# which is named operon graph, and records the edge multiplicity (since there maybe 
+# several similarity motif pairs between two operon), also the largest zscore and 
+# corresponding similarity score.
 #
 
 use strict;
@@ -52,7 +54,8 @@ while(<IN>) {
 }
 close IN;
 
-print "opr1_motif\topr2_motif\tsimilarity\tzscore\tin_regulon\tin_regulon_name\n";
+my (%pair2zscore, %pair2sim, %pair2multiplicity);
+
 open IN, "$compare_f" or die "Cannot open $compare_f: $!";
 while(<IN>) {
     chomp;
@@ -67,9 +70,35 @@ while(<IN>) {
     $m2 -= $mc{$opr1};
     next if $m2 < 1;
 
-    print "$opr1\_$m1\t$opr2\_$m2\t$sim\t$zscore\t";
 
     my ($g1, $g2) = sort ($opr1, $opr2);
+    my $pair = "$g1\_$g2";
+
+    if(defined $pair2zscore{$pair} and $pair2zscore{$pair} > $zscore) {
+        $pair2multiplicity{$pair}++;
+    } else {
+        $pair2multiplicity{$pair}++;
+
+        $pair2zscore{$pair} = $zscore;
+        $pair2sim{$pair} = $sim;
+    }
+
+
+
+}
+close IN;
+
+
+print "opr1\topr2\tsimilarity\tzscore\tmultiplicity\tin_regulon\tin_regulon_name\n";
+
+for my $pair (keys %pair2multiplicity) {
+    my ($g1, $g2) = split(/_/, $pair);
+
+    my $sim = $pair2sim{$pair};
+    my $zscore = $pair2zscore{$pair};
+    my $multiplicity = $pair2multiplicity{$pair};
+
+    print "$g1\t$g2\t$sim\t$zscore\t$multiplicity\t";
 
     if(defined $pairGeneInRegulon->{$g1}{$g2}) { # 
         print "$pairGeneInRegulon->{$g1}{$g2}\t";
@@ -85,9 +114,6 @@ while(<IN>) {
 
     print "\n";
 }
-close IN;
-
-
 
 
 
