@@ -1,6 +1,7 @@
 #!/usr/bin/env R
 
-dd <- read.table("data.tsv", header=TRUE)
+dd <- read.table("operon_table.tsv", header=TRUE)
+names(dd)[4] <- "raw_crs"
 ddCrs <- dd[!is.na(dd$raw_crs), ]
 #> dim(ddCrs)
 #[1] 2486865 7
