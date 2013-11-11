@@ -1,0 +1,4 @@
+Transfer hongwei's socre to operon level
+
+Use score_gene2operon.pl to generate the score to hongwei_socre_operon_level.tsv
+Use sampling.r do the top 1000 edge analysis
