@@ -1,136 +1,150 @@
 <html>
-    <head>
-        <!-- character encode for chiness-->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" ></meta> 
+  <head>
+    <!-- character encode for chiness-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" ></meta> 
 
-        <title>Footprinting method for prokaryotic motif finding</title>
-        <style>
-            #mark
-            {
-                background-color:yellow;
-            }
-            div
-            {
-                margin: 2px auto;
-                padding: 0.4em;
-                width:1024px;
-                padding-top:25px;
-                padding-bottom:25px;
-            }
-        </style>
-    </head>
-    <body>
+    <title>Footprinting method for prokaryotic motif finding</title>
+    <style>
+      #mark
+      {
+        background-color:yellow;
+      }
+      div
+      {
+        margin: 2px auto;
+        padding: 0.4em;
+        width:1024px;
+        padding-top:25px;
+        padding-bottom:25px;
+      }
+    </style>
+  </head>
+  <body>
 
-        <div>
-            <h1>Initialization 2013-09-01</h1>
-            <p>After reading the paper 'A Quick Guide to Organizing Computational Biology
-            Projects', I decide to reorgnize things in the way as suggested in this paper.</p>
+    <div>
+      <h1>Initialization 2013-09-01</h1>
+      <p>After reading the paper 'A Quick Guide to Organizing Computational Biology
+      Projects', I decide to reorgnize things in the way as suggested in this paper.</p>
 
-            <p>Build the directory struct, move all the old results to results/2013-09-01/</p>
-            <p>Set up git and ignore list</p>
+      <p>Build the directory struct, move all the old results to results/2013-09-01/</p>
+      <p>Set up git and ignore list</p>
 
-            <h2>Qin's email and data:</h2>
-            <p>/home/xynlab/maqin/Project-in-process/RegulonPrediction/CRS-PCS-score
-            对于cutoff是0.39的和original的分别生成了几个文件。*.edge.1/2/3跟之前的意义是一样的。你可以比较一下regulon中operon pair的rank变化。目前的边比上一个版本少了很多，我调整了cutoff的取值办法。你可以看看目前的regulon的稠密程度如何。*.chars就是离散化之后的矩阵。*.clusters是预测出来的结果。
-            </p>
-            <p>Download these data to data/2013-09-10/CRS-PCS-score</p>
+      <h2>Qin's email and data:</h2>
+      <p>/home/xynlab/maqin/Project-in-process/RegulonPrediction/CRS-PCS-score
+      对于cutoff是0.39的和original的分别生成了几个文件。*.edge.1/2/3跟之前的意义是一样的。你可以比较一下regulon中operon pair的rank变化。目前的边比上一个版本少了很多，我调整了cutoff的取值办法。你可以看看目前的regulon的稠密程度如何。*.chars就是离散化之后的矩阵。*.clusters是预测出来的结果。
+      </p>
+      <p>Download these data to data/2013-09-10/CRS-PCS-score</p>
 
-            <h2>dropbox change</h2>
-            <p>我重新organize了我们在dropbox的共享文件夹。细节你可以在ChangeLog里面看到。
-            只要在我们的项目过程中有比较固定的数据和结果（就像我们的similarity data matrix），我们就上传到这个目录里面，并且在changelog里面加上一个说明。</p>
+      <h2>dropbox change</h2>
+      <p>我重新organize了我们在dropbox的共享文件夹。细节你可以在ChangeLog里面看到。
+      只要在我们的项目过程中有比较固定的数据和结果（就像我们的similarity data matrix），我们就上传到这个目录里面，并且在changelog里面加上一个说明。</p>
 
-            <h2>graph analysis 2013-09-02</h2>
-            <p>use edges2table.pl transfer edge file to graph file for regulon_subgraph.py.</p>
-            <p>In folder results/2013-09-01, use runall.pl to do the subgraph density analysis,
-            results in results/2013-09-01/ori and /sim_cut folder.</p>
-            <h2>graph analysis 2013-09-03</h2>
-            <p>In folder results/2013-90-01, use summary.r do the operon pair rank analysis, e.g. count operon pair edges in the top 1000 edges with the highest crs score. Result write to  reg_pair_in_top_1000.stat, not as we expect.</p>
-            <p>Also add a script to check the graph degree in bin/degree_dist.py</p>
-            <h2>Further analysis 2013-09-04</h2>
-            <p>Talk with Qin on last results. We will include:</p>
-            <ol>
-                <li>all operon on the analysis</li>
-                <li>count the average zscore</li>
-                <li>check which regulons appear in the top 1000 or so edges</li>
-                <li>LOO per matrix site score</li>
-            </ol>
-            <p>LOO per matrix data: data/2013-09-05</p>
+      <h2>graph analysis 2013-09-02</h2>
+      <p>use edges2table.pl transfer edge file to graph file for regulon_subgraph.py.</p>
+      <p>In folder results/2013-09-01, use runall.pl to do the subgraph density analysis,
+      results in results/2013-09-01/ori and /sim_cut folder.</p>
+      <h2>graph analysis 2013-09-03</h2>
+      <p>In folder results/2013-90-01, use summary.r do the operon pair rank analysis, e.g. count operon pair edges in the top 1000 edges with the highest crs score. Result write to  reg_pair_in_top_1000.stat, not as we expect.</p>
+      <p>Also add a script to check the graph degree in bin/degree_dist.py</p>
+      <h2>Further analysis 2013-09-04</h2>
+      <p>Talk with Qin on last results. We will include:</p>
+      <ol>
+        <li>all operon on the analysis</li>
+        <li>count the average zscore</li>
+        <li>check which regulons appear in the top 1000 or so edges</li>
+        <li>LOO per matrix site score</li>
+      </ol>
+      <p>LOO per matrix data: data/2013-09-05</p>
 
-            <p>For the question that zscore drop amonge edge_1/2/3 files, Qin gave following explain</p>
-            <p>For the question of why z-score decreases from edge-1 to edge-3, I have checked my code and found that I did the normalization in the process as follows,
-            for an edge e=v1v2
-            w'(e) = w(e)x(w(v1)+w(v2))/w(vmax), where vmax represent the vertex with the largest weight.
-            Hence the score will decrease continuously and cannot be compared among different edge files. But the trend is right.</p>
-            <p>Qin joined the results together in xlsx format, see results/2013-09-01/regulon-09-06.xlsx</p>
+      <p>For the question that zscore drop amonge edge_1/2/3 files, Qin gave following explain</p>
+      <p>For the question of why z-score decreases from edge-1 to edge-3, I have checked my code and found that I did the normalization in the process as follows,
+      for an edge e=v1v2
+      w'(e) = w(e)x(w(v1)+w(v2))/w(vmax), where vmax represent the vertex with the largest weight.
+      Hence the score will decrease continuously and cannot be compared among different edge files. But the trend is right.</p>
+      <p>Qin joined the results together in xlsx format, see results/2013-09-01/regulon-09-06.xlsx</p>
 
-            <h2>Discussion with Qin 2013-09-08</h2>
-            <ol>
-                <li>calculate the clustering/transitivity of each regulon, like the ratio in current results. the definition can be found in shared folder (References\Network Property). I also attach it in case dropbox has some delay (Page 180-184).</li>
-                <li>For the results of Top X edges, (X can be 500, 1000, 1500 ...), compare CRS, PCS and the distribution of randomly picked X edges, in terms of number of edges in regulon and number of regulons covered by such edges among the picked ones. I expect the following figure<img src="notebook/image.png"> </li>
-                <li>For the results of ratio and average edge weight (may use clustering instead of ratio) for each regulon, we should compare CRS and PCS like<img src="notebook/image2.png">
-                </li>
-                <li>Classify the regulons into two groups roughly based on the LOO score (please recheck it as the NAP proteins, like H-NS, Fis, are reported as conserved ones compared to other TFs), then we expect to see the non-conserved regulons can get better ratio/clustering properties during we modifying edge weight by the two adjacent node weights<img src="notebook/image3.png"></li>
-                <li>Another genome-scale operon relatedness score may be used to compare with CRS and PCS in our paper:
-                <a href="http://nar.oxfordjournals.org/content/33/9/2822.short">paper</a>
+      <h2>Discussion with Qin 2013-09-08</h2>
+      <ol>
+        <li>calculate the clustering/transitivity of each regulon, like the ratio in current results. the definition can be found in shared folder (References\Network Property). I also attach it in case dropbox has some delay (Page 180-184).</li>
+        <li>For the results of Top X edges, (X can be 500, 1000, 1500 ...), compare CRS, PCS and the distribution of randomly picked X edges, in terms of number of edges in regulon and number of regulons covered by such edges among the picked ones. I expect the following figure<img src="notebook/image.png"> </li>
+        <li>For the results of ratio and average edge weight (may use clustering instead of ratio) for each regulon, we should compare CRS and PCS like<img src="notebook/image2.png">
+        </li>
+        <li>Classify the regulons into two groups roughly based on the LOO score (please recheck it as the NAP proteins, like H-NS, Fis, are reported as conserved ones compared to other TFs), then we expect to see the non-conserved regulons can get better ratio/clustering properties during we modifying edge weight by the two adjacent node weights<img src="notebook/image3.png"></li>
+        <li>Another genome-scale operon relatedness score may be used to compare with CRS and PCS in our paper:
+        <a href="http://nar.oxfordjournals.org/content/33/9/2822.short">paper</a>
 
-                We can make our paper more convinced in such a way.</li>
-            </ol>
+        We can make our paper more convinced in such a way.</li>
+      </ol>
 
-            <h2>Combine data and do more statistic in folder 2013-09-10</h2>
+      <h2>Combine data and do more statistic in folder 2013-09-10</h2>
 
-            <p>Combined various data with score_combine.pl</p>
-            <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that.</p>
-            <h2> talk with Qin for network cleanup</h2>
-            <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that. Qin confirmed this is right</p>
-            <p>get the partial correlation score for each pair of genes (in R)</p>
-            <xmp>
-                    library("corpcor")
-                    x<-read.table("ortholog.table.20")
-                    y<-cor.shrink(t(x))
-                    z<-cor2pcor(y)
-                    write(z, "ortholog.table.20.pcormatrix", ncolumns =2965  sep = "\t")
-            </xmp>
-            <h2> sampling 2013-09-16</h2>
-            <p>To see whether CRS could pick right regulon gene pairs from all pair, we use
-            a random sampling precess. Random sampling 1000 edges from all edges, compute
-            the regulon gene pairs in each sample, also in top 1000 CRS edges, top 1000
-            PCS_216 and PCS_1286 edges.</p>
-            <p>Top CRS edges are regulon pair enrich</p>
+      <p>Combined various data with score_combine.pl</p>
+      <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that.</p>
+      <h2> talk with Qin for network cleanup</h2>
+      <p>Found that zscores in edge.1 files are all much less than in original, need talk to Qin on that. Qin confirmed this is right</p>
+      <p>get the partial correlation score for each pair of genes (in R)</p>
+      <xmp>
+      library("corpcor")
+      x<-read.table("ortholog.table.20")
+      y<-cor.shrink(t(x))
+      z<-cor2pcor(y)
+      write(z, "ortholog.table.20.pcormatrix", ncolumns =2965  sep = "\t")
+      </xmp>
+      <h2> sampling 2013-09-16</h2>
+      <p>To see whether CRS could pick right regulon gene pairs from all pair, we use
+      a random sampling precess. Random sampling 1000 edges from all edges, compute
+      the regulon gene pairs in each sample, also in top 1000 CRS edges, top 1000
+      PCS_216 and PCS_1286 edges.</p>
+      <p>Top CRS edges are regulon pair enrich</p>
 
-            <h2>Talk with Qin 09-16</h2>
-            <p>HongWei's score</p>
-            <p>Downloaded from maqin@zcluster:~/DATA/function_relatedness_hongwei_NAR_2005</p>
-            <p>columns are gene1, gene2, combined-score, neighborhood score, phylogenetic score, go score, and code indicating whether the two genes belong to the same known module(0, for no, 1 for operon, 2 for regulon and 3 for pathway)</p>
-            <p>regulon cluster</p>
-            <p>read network work clear</p>
+      <h2>Talk with Qin 09-16</h2>
+      <p>HongWei's score</p>
+      <p>Downloaded from maqin@zcluster:~/DATA/function_relatedness_hongwei_NAR_2005</p>
+      <p>columns are gene1, gene2, combined-score, neighborhood score, phylogenetic score, go score, and code indicating whether the two genes belong to the same known module(0, for no, 1 for operon, 2 for regulon and 3 for pathway)</p>
+      <p>regulon cluster</p>
+      <p>read network work clear</p>
 
-            <h2>New multigraph based approach</h2>
+      <h2>New multigraph based approach</h2>
 
-            <p>After several talk with Qin, we decide to try mulitgraph for the representation of gene regulation network.</p>
-            <p>For an edge between opr1 and opr2, we will record which two motifs this edge is actually linking, and construct a graph with node be opr motif combination.</p>
-            <p>The table columns should be node 1(oprid_a_motif_id), node2(oprid_b_motif_id), similarity, zscore, degree of node 1, degree of node 2, common neighbour of node 1 and node 2.</p>
-            <p>Still we do the all analysis as before.</p>
-            <p>The original results for motif comparison is downloaded from zcsluter:~/footprint/run_closureCompare/results, stored at data/2013-10-08.</p>
+      <p>After several talk with Qin, we decide to try mulitgraph for the representation of gene regulation network.</p>
+      <p>For an edge between opr1 and opr2, we will record which two motifs this edge is actually linking, and construct a graph with node be opr motif combination.</p>
+      <p>The table columns should be node 1(oprid_a_motif_id), node2(oprid_b_motif_id), similarity, zscore, degree of node 1, degree of node 2, common neighbour of node 1 and node 2.</p>
+      <p>Still we do the all analysis as before.</p>
+      <p>The original results for motif comparison is downloaded from zcsluter:~/footprint/run_closureCompare/results, stored at data/2013-10-08.</p>
 
-            <h2>Add some basic statistic for orthology</h2>
-            <p>data/ortholog_raw contains the raw ortholog and count information</p>
+      <h2>Add some basic statistic for orthology</h2>
+      <p>data/ortholog_raw contains the raw ortholog and count information</p>
 
-            <h2>Generated the graph file with common neighbour count</h2>
-            <p>results/2013-10-10</p>
+      <h2>Generated the graph file with common neighbour count</h2>
+      <p>results/2013-10-10</p>
 
-            <h2>Data ready and need stat and clustering with MCL</h2>
-            <p>2013-10-28</p>
-            <p>After talk with Qin, I copied the regulon graph to his zcluster account, he will do clustering with our own method.</p>
-            <p>I will do statistic analysis and cluster with MCL</p>
-            <p>At last, we need a pipeline to run all these</p>
+      <h2>Data ready and need stat and clustering with MCL</h2>
+      <p>2013-10-28</p>
+      <p>After talk with Qin, I copied the regulon graph to his zcluster account, he will do clustering with our own method.</p>
+      <p>I will do statistic analysis and cluster with MCL</p>
+      <p>At last, we need a pipeline to run all these</p>
 
-            <h2> Clustering process in 2013-10-30</h2>
-            <h2> Use different similarity cutoff for the cluster property analysis in 2013-11-07</h2>
+      <h2> Clustering process in 2013-10-30</h2>
+      <h2> Use different similarity cutoff for the cluster property analysis in 2013-11-07</h2>
 
-            <h2> Transfer hongwei's socre to operon level and do top 1000 edge analysis 2013-11-11</h2>
-            <p> The results seems better than before, which we do not want to see.</p>
+      <h2> Transfer hongwei's socre to operon level and do top 1000 edge analysis 2013-11-11</h2>
+      <p> The results seems better than before, which we do not want to see.</p>
 
 
-        </div>
-    </body>
+    </div>
+    <div>
+      <h1> List of results directory </h1>
+      <ol>
+        <li>2013-09-01</li>
+        <li>2013-09-10 Combine different score, raw sampling</li>
+        <li>2013-10-10 Generate operon graph, motif graph from raw data</li>
+        <li>2013-10-24 Top 1000 edge analysis for each score</li>
+        <li>2013-10-30 MCL clustering pipeline</li>
+        <li>2013-11-07 Simlarity cutoff for graph, clustering analysis</li>
+        <li>2013-11-11 Transfer hongwei's socre to operon level</li>
+        <li>2013-11-12 </li>
+      </ol>
+
+    </div>
+  </body>
 </html>
