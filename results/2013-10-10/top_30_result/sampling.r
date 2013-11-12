@@ -1,6 +1,7 @@
 #!/usr/bin/env R
 
 dd <- read.table("operon_table.tsv", header=TRUE)
+names(dd)[4] <- "raw_crs"
 ddCrs <- dd[!is.na(dd$raw_crs), ]
 #> dim(ddCrs)
 #[1] 2550345      11
@@ -22,6 +23,16 @@ topCrs <- countInRegulonEdge(ddCrs[ order(ddCrs$raw_crs, decreasing=TRUE)[1:n], 
 #
 #$regulon
 #[1] 35
+
+# add similarity cutoff 0.5
+ddCrs <- dd[!is.na(dd$raw_crs) & dd$similarity >= 0.5, ]
+topCrs <- countInRegulonEdge(ddCrs[ order(ddCrs$raw_crs, decreasing=TRUE)[1:n], ])
+topCrs
+#$inRegulonEdge
+#[1] 122
+
+#$regulon
+#[1] 36
 
 top_similarity <- countInRegulonEdge(ddCrs[ order(ddCrs$similarity, decreasing=TRUE)[1:n], ])
 top_similarity

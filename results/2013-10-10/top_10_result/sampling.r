@@ -28,6 +28,16 @@ topCrs <- countInRegulonEdge(ddCrs[ order(ddCrs$raw_crs, decreasing=TRUE)[1:n], 
 #$regulon
 #[1] 32
 
+# add similarity cutoff 0.5
+ddCrs <- dd[!is.na(dd$raw_crs) & dd$similarity >= 0.5, ]
+topCrs <- countInRegulonEdge(ddCrs[ order(ddCrs$raw_crs, decreasing=TRUE)[1:n], ])
+topCrs
+#$inRegulonEdge
+#[1] 125
+
+#$regulon
+#[1] 32
+
 top_similarity <- countInRegulonEdge(ddCrs[ order(ddCrs$similarity, decreasing=TRUE)[1:n], ])
 top_similarity
 #$inRegulonEdge
