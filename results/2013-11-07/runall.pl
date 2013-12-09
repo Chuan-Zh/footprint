@@ -16,8 +16,7 @@ mkdir $output_d1 unless -e $output_d1;
 mkdir $output_d2 unless -e $output_d2;
 
 my $cmd;
-my @similarity_cut = (0.5, 0.6, 0.7, 0.8);
-@similarity_cut = (0.4);
+my @similarity_cut = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9);
 my $zscore_cut = -1;
 
 for my $sim_cut (@similarity_cut) {

@@ -17,6 +17,7 @@ mkdir $output_d2 unless -e $output_d2;
 
 my $cmd;
 my @zscore_cuts = (5, 10, 15, 20);
+@zscore_cuts = (2);
 my $sim_cut = -1;
 
 for my $zscore_cut (@zscore_cuts) {

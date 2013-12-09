@@ -2,3 +2,6 @@ Transfer hongwei's socre to operon level
 
 Use score_gene2operon.pl to generate the score to hongwei_socre_operon_level.tsv
 Use sampling.r do the top 1000 edge analysis
+
+There are 1359 operons covered by this score
+sed '1d' hongwei_socre_operon_level.tsv | cut -f1,2 | tr '\t'\n' | sort | uniq | wc
