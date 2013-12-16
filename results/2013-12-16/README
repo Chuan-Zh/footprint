@@ -1,0 +1,11 @@
+
+Transfer hongwei's socre to operon level by direct mapping, e.g. map a gene to operon it
+is in, two genes inside an operon are not consider to be a in a regulon.
+
+perl score_gene2operon_direct.pl > hongwei_socre_operon_level_direct.tsv
+
+Rscript sampling.r
+
+Result is in:
+hw_socre_opr_top_edge_analysis.tsv
+
