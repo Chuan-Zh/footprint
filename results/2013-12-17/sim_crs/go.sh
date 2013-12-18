@@ -1,0 +1,8 @@
+#Rscript sampling.r top_10_operon_table.tsv top_10 top_edge_analysis_top_10_operon.tsv
+#Rscript sampling.r top_30_operon_table.tsv top_30 top_edge_analysis_top_30_operon.tsv
+
+#Rscript sampling.r top_10_operon_table.tsv top_10 top_edge_analysis_500_top_10_operon.tsv
+#Rscript sampling.r top_30_operon_table.tsv top_30 top_edge_analysis_500_top_30_operon.tsv
+
+Rscript sampling_with_selected_operon_list.r top_10_operon_table.tsv top_10 top_edge_analysis_500_in_hw_list_top_10_operon.tsv
+Rscript sampling_with_selected_operon_list.r top_30_operon_table.tsv top_30 top_edge_analysis_500_in_hw_list_top_30_operon.tsv

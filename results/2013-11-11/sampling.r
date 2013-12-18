@@ -1,6 +1,20 @@
 #!/usr/bin/env R
 dd= read.table("hongwei_socre_operon_level.tsv", header=TRUE)
 
+countInRegulonEdge <- function(data) {
+  rv = list() 
+  d <- data[ data$in_regulon > 0, ]
+  rv$inRegulonEdge <- nrow(d)
+
+  rv$regulon <- length(table(strsplit(paste(d$reg_names, collapse=''), '_'))) - 1
+
+  if (rv$regulon < 0) {
+    rv$regulon = 0
+  }
+
+  return(rv)
+}
+
 top_operon_cmb_score <- countInRegulonEdge(dd[ order(dd$hw_score, decreasing=TRUE)[1:1000], ])
 top_operon_cmb_score
 #$inRegulonEdge
@@ -14,8 +28,8 @@ dim(dd)
 #[1] 922761      5
 
 # after single analysis for top 1000 edges, do same thing for different steps from 100 to 2000
-step = 1:20
-step = step*100
+step = 1:50
+step = step*500
 
 inRegEdge = array(dim=length(step))
 regulon = array(dim=length(step))
@@ -26,7 +40,7 @@ for (i in 1:length(step)) {
   regulon[i] = top_operon_cmb_score$regulon
 }
 
-type = rep("hw_socre_opr", length(step))
+type = rep("hw_socre_opr_avg", length(step))
 result = data.frame(step, type, inRegEdge, regulon)
 
 result
@@ -52,19 +66,10 @@ result
 #19 1900 hw_socre_opr       265      30
 #20 2000 hw_socre_opr       268      30
 
-write.table(result, file="hw_socre_opr_top_edge_analysis.tsv", quote=F, row.names=F, sep='\t')
+write.table(result, file="hw_socre_opr_top_edge_analysis_500.tsv", quote=F, row.names=F, sep='\t')
 
 
 
-countInRegulonEdge <- function(data) {
-  rv = list() 
-  d <- data[ data$in_regulon > 0, ]
-  rv$inRegulonEdge <- nrow(d)
-
-  rv$regulon <- length(table(strsplit(paste(d$reg_names, collapse=''), '_'))) - 1
-
-  return(rv)
-}
 
 
 #countInRegulonEdge <- function(data) {

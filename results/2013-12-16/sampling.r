@@ -25,8 +25,8 @@ dim(dd)
 #[1] 922761      5
 
 # after single analysis for top 1000 edges, do same thing for different steps from 100 to 2000
-step = 1:20
-step = step*100
+step = 1:50
+step = step*500
 
 inRegEdge = array(dim=length(step))
 regulon = array(dim=length(step))
@@ -63,7 +63,7 @@ result
 # 1900 hw_socre_opr       152      19
 # 2000 hw_socre_opr       160      19
 
-write.table(result, file="hw_socre_opr_top_edge_analysis.tsv", quote=F, row.names=F, sep='\t')
+write.table(result, file="hw_socre_opr_top_edge_analysis_500.tsv", quote=F, row.names=F, sep='\t')
 
 
 
