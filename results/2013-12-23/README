@@ -1,4 +1,4 @@
 Summary properties for each gene in E.coli, 
 Number of ortholog genes in the 216 reference genome
-Is a operon leading gene or not (in regulonDB data)
+Is a operon leading gene (the first gene in operon) or not (in regulonDB data)
 Number of TFs regulate this gene, and the TF list.
