@@ -1,0 +1,27 @@
+RESULTS part (a)
+======================
+(a) The basic stats of orthologous operons using E. coli as target genome (Two distributions)
+
+1. Local regulon or operon not in regulon cannot get enough supporting in host genome
+
+draw regulon size dist with stat.r
+
+* regulon_size.txt
+* reg_size_dist_bin1.pdf
+* reg_size_dist_bin_default.pdf
+
+2. The orthologous promoters can benefit the footprinting motif finding
+
+count ortholog operon number from number of ortholog promoters found: 
+for i in ortholog_opr_promoter_300/*;do echo -n $i; grep '>' $i | wc; done | sed -e 's/ortholog_opr_promoter_300\///' > ortholog_opr_count.txt
+
+draw orthologous operon number distribution with stat.r
+
+* orth_opr_count_bin2.pdf
+* orth_opr_count_less216_bin1.pdf
+* orth_opr_count_less216_bin2.pdf
+
+There are operon with more than 216 orthologs, may caused by their large size
+about 84.3% of operons with more than 10 ortholog
+
+
