@@ -10,6 +10,14 @@ draw regulon size dist with stat.r
 * reg_size_dist_bin1.pdf
 * reg_size_dist_bin_default.pdf
 
+sum(dd$size > 10)
+#regulon with more than 10 co-regulated operon
+# 28
+
+summary(dd$size)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#  0.000   1.000   2.000   7.949   6.000 183.000
+
 2. The orthologous promoters can benefit the footprinting motif finding
 
 count ortholog operon number from number of ortholog promoters found: 
@@ -23,5 +31,10 @@ draw orthologous operon number distribution with stat.r
 
 There are operon with more than 216 orthologs, may caused by their large size
 about 84.3% of operons with more than 10 ortholog
+
+summary(orth$V2)
+# ortholog operon number
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#   1.00   19.00   56.00   80.41  112.00  827.00
 
 
