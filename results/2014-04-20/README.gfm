@@ -1,0 +1,10 @@
+Some statistic results appear in paper
+============================
+
+operons of E. coli K12 and 454,181 operons for those 216 genomes 
+from the operon database DOOR2 (include single gene operon)
+'''bash
+cat ~/footprint/pipeline/pipeline_stand_alone/data/operon_p/*.opr | wc 
+'''
+
+
