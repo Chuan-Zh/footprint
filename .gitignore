@@ -6,6 +6,7 @@ results/2013-09-01/graph
 data/regulon_by_first_gene.txt
 data/
 dump/
+pipeline/
 
 *.tsv
 *.stat
