@@ -1,0 +1,5 @@
+library(ggplot2)
+dd<-read.table("tmp", header=T)
+p <- ggplot2(dd, aes(factor(score), transitivity))
+p + geom_boxplot(aes(fill=factor(type)))
+# dev.copy2pdf(file='transitivity_boxplot.pdf')
