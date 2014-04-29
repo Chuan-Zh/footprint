@@ -1,0 +1,1 @@
+awk '{if($3 != "NA") print}' data_update.tsv | cut -f1,2,8  | awk '{if($3 != "NA") print}' > pcs_216_opr_level.tsv
