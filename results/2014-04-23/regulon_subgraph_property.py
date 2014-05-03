@@ -141,6 +141,13 @@ def subgraphProperty(H):
 
   return (nnodes, nedges, dens, average_score, trans)
 
+def printGraphProperty(G, score_name):
+  total_nodes = G.number_of_nodes()
+  total_edges = G.number_of_edges()
+  trans = nx.transitivity(G)
+  print ("score\tnodes\tedges\ttransitivity")
+  print ("%s\t%d\t%d\t%.3f" % (score_name, total_nodes, total_edges, trans))
+
 def printSubgraphProperty(G, score_name, regulon_set):
   #global header
   #print("score\tregulon\ttype\tnodes\tedges\tedge_density\taverage_score\ttransitivity")
@@ -182,27 +189,33 @@ if __name__== "__main__":
   print("score\tregulon\ttype\tnodes\tedges\tedge_density\taverage_score\ttransitivity")
 
   G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
-  printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
+  #printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
+  printGraphProperty(G_sim_top_10, 'sim_top_10')
   G_sim_top_10.clear()
 
   G_sim_top_30 = buildSimilarityGraph_top_30(conn, EdgeLimit)
-  printSubgraphProperty(G_sim_top_30, 'sim_top_30', regulon_set)
+  #printSubgraphProperty(G_sim_top_30, 'sim_top_30', regulon_set)
+  printGraphProperty(G_sim_top_30, 'sim_top_30')
   G_sim_top_30.clear()
 
   G_crs_top_10 = buildCrsGraph_top_10(conn, EdgeLimit)
-  printSubgraphProperty(G_crs_top_10, 'crs_top_10', regulon_set)
+  #printSubgraphProperty(G_crs_top_10, 'crs_top_10', regulon_set)
+  printGraphProperty(G_crs_top_10, 'crs_top_10')
   G_crs_top_10.clear()
 
   G_crs_top_30 = buildCrsGraph_top_30(conn, EdgeLimit)
-  printSubgraphProperty(G_crs_top_30, 'crs_top_30', regulon_set)
+  #printSubgraphProperty(G_crs_top_30, 'crs_top_30', regulon_set)
+  printGraphProperty(G_crs_top_30, 'crs_top_30')
   G_crs_top_30.clear()
 
   G_pcs = buildPcsGraph(conn, EdgeLimit)
-  printSubgraphProperty(G_pcs, 'pcs', regulon_set)
+  #printSubgraphProperty(G_pcs, 'pcs', regulon_set)
+  printGraphProperty(G_pcs, 'pcs')
   G_pcs.clear()
 
   G_gfr = buildGfrGraph(conn, EdgeLimit)
-  printSubgraphProperty(G_gfr, 'gfr', regulon_set)
+  #printSubgraphProperty(G_gfr, 'gfr', regulon_set)
+  printGraphProperty(G_gfr, 'gfr')
   G_gfr.clear()
 
   conn.close()

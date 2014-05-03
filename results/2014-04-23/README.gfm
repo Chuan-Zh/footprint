@@ -1,14 +1,18 @@
 stat and pic for result part b
 =================================
 
-compare different graph properties of regulon subgraph
+part a): compare different graph properties of regulon subgraph
 1. generate regulon subgraph and random subgraph with 
-  python regulon_subgraph_property.py
+  python regulon_subgraph_property.py > regulon_subgraph_property.tsv
+  whole graph propery in score_graph_property.tsv
 
-2. draw boxplot with 
-  draw_subgraph_property.r
+2. draw boxplot for tansitivity and compare scores with draw_subgraph_property.r
+  transitivity_boxplot.pdf
+  transitivity_compare.pdf
+  transitivity_divide_edge_density.pdf
+  transitivity_divide_whole_graph_edge_density.pdf
 
-top edge in regulon analysis
+part b): top edge in regulon analysis
 
 
 GFR, wu hong wei's score
@@ -21,3 +25,13 @@ ments. We then combine the three different sources
 of information in the framework of Bayesian inference,
 and we use the combined information to measure the
 strength of gene functional relationship. 
+
+Normalized clustering score for subgraph
+---------------------------------
+http://en.wikipedia.org/wiki/Clustering_coefficient
+
+For a subgraph H of G, compute its global clustering coefficient C(H)
+Normalized clustering score for H is:
+NC(H) = C(H) / edge_density(G)
+edge_density(G) = 2 * #edges of G / ((#nodes of G) * (#nodes of G - 1))
+
