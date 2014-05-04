@@ -11,4 +11,5 @@ ortholog operon number dist for Ecoli operon
 
 2014-04-23 regulon subgraph property and top edge analysis, part (b) of results
 ----------------------------------
-compared three different score for clustering property
+compared three different score for clustering property and top edge analysis for
+regulon edge enrichment

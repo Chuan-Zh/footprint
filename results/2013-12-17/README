@@ -5,9 +5,19 @@ CRS
 PCS
 Hongwei's score
 
+go.sh to generate data
+
+draw.r 
+
+The prefered data and draw
+top_edge_analysis_cmp_3_score.pdf
+top_edge_analysis_cmp_3_score.tsv
+
 Originally, Hongwei's socre is at gene level and covered only ~2500 genes which have GO 
 notation, so we need to put it to operon level.
 The are there way to compute Hongwei's score at operon level:
 1 by taking average
 2 by transfer a gene to operon directly
 3 by use the first gene in an operon to stand for that operon
+
+
