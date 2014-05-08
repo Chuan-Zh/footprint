@@ -13,3 +13,7 @@ ortholog operon number dist for Ecoli operon
 ----------------------------------
 compared three different score for clustering property and top edge analysis for
 regulon edge enrichment
+
+2014-05-06 compare graph clusters with known regulon
+-------------------------------
+both are sets, use overlap, Fisher Exact test etc.

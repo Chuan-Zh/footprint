@@ -1,0 +1,17 @@
+clustering results
+===================================
+data source:
+maqin@zcluster:~/Collaboration/RegulonPrediction/results/cluster-Qin-04232014
+
+http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+EASE Score, a modified Fisher Exact P-Value
+
+With compare_regulon_cluster.py:
+Compare a regulon (as operon set) with a mcl cluster(as set of motifs, 
+transfer to operon set) with hypergeometric distribution, overlap coefficient 
+(overlap_coe = |intersection(X, Y)| / min(|X|, |Y|) ) and 
+(overlap_coe2 = |intersection(X, Y)| / |union(X, Y)| ) .
+p-value corresponds to Fisher Exact test, EASE score is a modified Fisher Exact test.
+See http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+
+
