@@ -14,7 +14,7 @@ import networkx as nx
 # globle cutoffs
 EdgeLimit = 5e5
 RegulonSizeCutoff = 20
-RandomSampleSize = 100
+RandomSampleSize = 100 # actually is random sample times
 
 def readRegulon(file="regulon_by_first_gene.txt"):
   ''' read regulon file, return dict of regulon name to gene id set '''

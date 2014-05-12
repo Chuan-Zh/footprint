@@ -12,6 +12,11 @@ part a): compare different graph properties of regulon subgraph
   transitivity_divide_edge_density.pdf
   transitivity_divide_whole_graph_edge_density.pdf
 
+  2549 operons, forms 3,247,426 possible operon pairs
+  top 5e5 edges used
+  RegulonSizeCutoff = 20, results in 17 regulons.
+  
+
 part b): top edge in regulon analysis
   in folder ../2013-12-17/
 
