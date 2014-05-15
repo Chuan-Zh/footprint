@@ -69,6 +69,8 @@ if __name__ == "__main__":
   regulon = read_regulon(file = regulon_f)
 
   clusters = read_mcl(mcl_f)
+  #print clusters
+  #sys.exit()
 
   print("cluster\tregulon\tclu_size\treg_size\toverlap\toverlap_coe(wiki)\tcoe2\tp-value(hypergeom)\tEASE")
   for index,clu in enumerate(clusters):
@@ -83,7 +85,8 @@ if __name__ == "__main__":
         coe1 = overlap_coe1(overlap, clu_size, reg_size)
         coe2 = overlap/float(union)
 
-        if coe1 < 0.1 or coe2 < 0.1: continue
+        # and or or, control the output results
+        if coe1 < 0.1 and coe2 < 0.1: continue
 
         rv = hypergeom(OPERON_COUNT, reg_size, clu_size)
 
