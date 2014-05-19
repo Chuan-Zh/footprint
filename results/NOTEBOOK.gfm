@@ -17,3 +17,6 @@ regulon edge enrichment
 2014-05-06 compare graph clusters with known regulon
 -------------------------------
 both are sets, use overlap, Fisher Exact test etc.
+
+2014-05-19 add edges progressively to the graph and see regulon clustering 
+-------------------------------
