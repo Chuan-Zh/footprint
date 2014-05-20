@@ -7,6 +7,9 @@ data/regulon_by_first_gene.txt
 data/
 dump/
 pipeline/
+results/2014-05-06/edge_1_C_300
+results/2014-05-06/with-index
+results/2014-05-06/without-index
 
 *.tsv
 *.stat
