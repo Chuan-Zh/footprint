@@ -77,7 +77,7 @@ def buildCrsGraph_top_10(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_10 ORDER BY \
-      similarity DESC LIMIT ?', (edge_number, )):
+      zscore DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
@@ -85,7 +85,7 @@ def buildCrsGraph_top_30(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_30 ORDER BY \
-      similarity DESC LIMIT ?', (edge_number, )):
+      zscore DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
@@ -197,9 +197,10 @@ if __name__== "__main__":
   #printGraphProperty(G_crs_top_10, 'crs_top_10')
   #G_crs_top_10.clear()
 
-  pdf = PdfPages("LexA_crp.pdf")
+  #pdf = PdfPages("LexA_crs.pdf")
+  pdf = PdfPages("CRP_crs.pdf")
   edgesLimits = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-  CRP = regulon_set['LexA']
+  CRP = regulon_set['CRP']
   for lim in edgesLimits:
     print lim
     g = buildCrsGraph_top_30(conn, lim)

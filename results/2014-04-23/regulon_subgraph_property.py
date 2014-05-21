@@ -84,7 +84,7 @@ def buildCrsGraph_top_10(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_10 ORDER BY \
-      similarity DESC LIMIT ?', (edge_number, )):
+      zscore DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
@@ -92,7 +92,7 @@ def buildCrsGraph_top_30(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_30 ORDER BY \
-      similarity DESC LIMIT ?', (edge_number, )):
+      zscore DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
