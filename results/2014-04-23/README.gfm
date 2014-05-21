@@ -4,6 +4,7 @@ stat and pic for result part b
 part a): compare different graph properties of regulon subgraph
 1. generate regulon subgraph and random subgraph with 
   python regulon_subgraph_property.py > regulon_subgraph_property.tsv
+  regulon_subgraph_property_v2.tsv is slightly fixed version.
   whole graph propery in score_graph_property.tsv
 
 2. draw boxplot for tansitivity and compare scores with draw_subgraph_property.r
