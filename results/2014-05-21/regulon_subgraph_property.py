@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 '''
-With pairwise CRS score, add edges progressively to the graph and see whether nodes from regulon will form clusters
+ For the graphs build with different scores, measure the properties of regulon
+ subgraphs
+
+ socres: pcs, crs, similarity, grf(hongwei)
+ properties: edge density, average score, clustering
+
+ We need to keep the same number of edges for each score, say top 10000.
 '''
 import sqlite3
 import networkx as nx
 
 # globle cutoffs
+EdgeLimit = 5e5
 RegulonSizeCutoff = 20
 RandomSampleSize = 100 # actually is random sample times
 
@@ -77,7 +84,7 @@ def buildCrsGraph_top_10(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_10 ORDER BY \
-      zscore DESC LIMIT ?', (edge_number, )):
+      similarity DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
@@ -85,7 +92,7 @@ def buildCrsGraph_top_30(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_30 ORDER BY \
-      zscore DESC LIMIT ?', (edge_number, )):
+      similarity DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
@@ -106,14 +113,14 @@ def buildGfrGraph(conn, edge_number):
   return G
 
 def edge_density(edge_n, node_n):
-  """probobility of having an edge between two nodes"""
-  try:
-    rv = 2.0 * edge_n / (node_n * (node_n - 1))
-  except ZeroDivisionError:
-    sys.stderr.write("graph has 0 or 1 node, return 0 for edge density\n")
-    rv = 0
+    """probobility of having an edge between two nodes"""
+    try:
+        rv = 2.0 * edge_n / (node_n * (node_n - 1))
+    except ZeroDivisionError:
+        sys.stderr.write("graph has 0 or 1 node, return 0 for edge density\n")
+        rv = 0
 
-  return rv
+    return rv
 
 def subgraphProperty(H):
   nnodes = nx.number_of_nodes(H)
@@ -152,12 +159,12 @@ def printSubgraphProperty(G, score_name, regulon_set):
       else:
         (nnodes, nedges, dens, average_score, trans) = subgraphProperty(H)
         print("%s\t%s\treal\t%d\t%d\t%.3f\t%.3f\t%.3f" \
-            % (score_name, reg, nnodes, nedges, dens, average_score, trans))
+          % (score_name, reg, nnodes, nedges, dens, average_score, trans))
         for i in xrange(RandomSampleSize):
           H_random = G.subgraph( random.sample(G_nodes, nnodes) )
           (nnodes, nedges, dens, average_score, trans) = subgraphProperty(H_random)
           print("%s\t%s\trand\t%d\t%d\t%.3f\t%.3f\t%.3f" \
-              % (score_name, reg, nnodes, nedges, dens, average_score, trans))
+            % (score_name, reg, nnodes, nedges, dens, average_score, trans))
 
 
 if __name__== "__main__":
@@ -166,10 +173,8 @@ if __name__== "__main__":
   import os
   import random
   from pprint import pprint
-  from matplotlib.backends.backend_pdf import PdfPages
-  import matplotlib.pyplot as plt
 
-  EdgeLimit = 5e5
+  #EdgeLimit = 5e5
   #RegulonSizeCutoff = 20
   #RandomSampleSize = 100
   #operons = readOperonSet()
@@ -181,48 +186,37 @@ if __name__== "__main__":
 
   conn = sqlite3.connect("operon_pairwise_relation.db")
 
+  print("score\tregulon\ttype\tnodes\tedges\tedge_density\taverage_score\ttransitivity")
 
-  #G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
+  G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
   #printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
-  #printGraphProperty(G_sim_top_10, 'sim_top_10')
-  #G_sim_top_10.clear()
+  printGraphProperty(G_sim_top_10, 'sim_top_10')
+  G_sim_top_10.clear()
 
-  #G_sim_top_30 = buildSimilarityGraph_top_30(conn, EdgeLimit)
+  G_sim_top_30 = buildSimilarityGraph_top_30(conn, EdgeLimit)
   #printSubgraphProperty(G_sim_top_30, 'sim_top_30', regulon_set)
-  #printGraphProperty(G_sim_top_30, 'sim_top_30')
-  #G_sim_top_30.clear()
+  printGraphProperty(G_sim_top_30, 'sim_top_30')
+  G_sim_top_30.clear()
 
   G_crs_top_10 = buildCrsGraph_top_10(conn, EdgeLimit)
   #printSubgraphProperty(G_crs_top_10, 'crs_top_10', regulon_set)
-  #printGraphProperty(G_crs_top_10, 'crs_top_10')
-  #G_crs_top_10.clear()
+  printGraphProperty(G_crs_top_10, 'crs_top_10')
+  G_crs_top_10.clear()
 
-  #pdf = PdfPages("LexA_crs.pdf")
-  pdf = PdfPages("PhoP_crs.pdf")
-  edgesLimits = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-  CRP = regulon_set['PhoP']
-  for lim in edgesLimits:
-    print lim
-    g = buildCrsGraph_top_30(conn, lim)
+  G_crs_top_30 = buildCrsGraph_top_30(conn, EdgeLimit)
+  #printSubgraphProperty(G_crs_top_30, 'crs_top_30', regulon_set)
+  printGraphProperty(G_crs_top_30, 'crs_top_30')
+  G_crs_top_30.clear()
 
-    node_color = [ 1 if node in CRP else 0 for node in g ]
+  G_pcs = buildPcsGraph(conn, EdgeLimit)
+  #printSubgraphProperty(G_pcs, 'pcs', regulon_set)
+  printGraphProperty(G_pcs, 'pcs')
+  G_pcs.clear()
 
-    pos = nx.graphviz_layout(g, prog="neato")
-    plt.figure(figsize=(10.0, 10.0))
-    plt.axis("off")
-    nx.draw(g,
-        pos,
-        node_color = node_color,
-        node_size = 20,
-        alpha=0.8,
-        with_labels=False,
-        cmap=plt.cm.jet,
-        vmax=1.0,
-        vmin=0.0
-        )
-    pdf.savefig()
-    plt.close()
+  G_gfr = buildGfrGraph(conn, EdgeLimit)
+  #printSubgraphProperty(G_gfr, 'gfr', regulon_set)
+  printGraphProperty(G_gfr, 'gfr')
+  G_gfr.clear()
 
   conn.close()
-  pdf.close()
 

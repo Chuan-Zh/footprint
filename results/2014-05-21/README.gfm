@@ -1,0 +1,23 @@
+regulon subgraph with motifs as nodes
+====================================
+
+Qin genenated the edges with different kind of cutoffs, see whether this will help pickout
+real regulon edges.
+
+Use regulon subgraph clustering property as we do for CRS, PCS, and Hongwei scores.
+
+A first see show that the cutoff is very lose, didn't cut out too much edges
+
+  3262801   9788403 129436485 edge_1_J_K_300_0.15.edges
+  3262474   9787422 128017357 edge_1_J_K_300_0.15.edges.2
+  3262801   9788403 129436485 edge_1_J_K_300_0.1.edges
+  3262474   9787422 128017357 edge_1_J_K_300_0.1.edges.2
+  3262801   9788403 129436485 edge_1_J_K_300.edges
+  3262474   9787422 128017357 edge_1_J_K_300.edges.2
+
+while the original graph has 3409259 edges
+
+So I want to try top edges draw method first to see whether these motifs will cluster as
+regulon
+
+

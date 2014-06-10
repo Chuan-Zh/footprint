@@ -65,6 +65,14 @@ def buildSimilarityGraph_top_10(conn, edge_number):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
 
+def buildSimilarityGraph_top_10_v2(conn, edge_number):
+  c = conn.cursor()
+  G = nx.Graph()
+  for row in c.execute('SELECT opr1_motif, opr2_motif, similarity FROM top_10 ORDER BY \
+      similarity DESC LIMIT ?', (edge_number, )):
+    G.add_edge(row[0], row[1], score=float(row[2]))
+  return G
+
 def buildSimilarityGraph_top_30(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
@@ -77,6 +85,14 @@ def buildCrsGraph_top_10(conn, edge_number):
   c = conn.cursor()
   G = nx.Graph()
   for row in c.execute('SELECT opr1, opr2, zscore FROM top_10 ORDER BY \
+      zscore DESC LIMIT ?', (edge_number, )):
+    G.add_edge(row[0], row[1], score=float(row[2]))
+  return G
+
+def buildCrsGraph_top_10_v2(conn, edge_number):
+  c = conn.cursor()
+  G = nx.Graph()
+  for row in c.execute('SELECT opr1_motif, opr2_motif, zscore FROM top_10 ORDER BY \
       zscore DESC LIMIT ?', (edge_number, )):
     G.add_edge(row[0], row[1], score=float(row[2]))
   return G
@@ -159,53 +175,16 @@ def printSubgraphProperty(G, score_name, regulon_set):
           print("%s\t%s\trand\t%d\t%d\t%.3f\t%.3f\t%.3f" \
               % (score_name, reg, nnodes, nedges, dens, average_score, trans))
 
-
-if __name__== "__main__":
-  import networkx as nx
-  import sys
-  import os
-  import random
-  from pprint import pprint
-  from matplotlib.backends.backend_pdf import PdfPages
-  import matplotlib.pyplot as plt
-
-  EdgeLimit = 5e5
-  #RegulonSizeCutoff = 20
-  #RandomSampleSize = 100
-  #operons = readOperonSet()
-  #pprint(operons)
-  #print len(operons)
-
-  regulon_set = readRegulon()
-  regulon_g2r = readRegulonG2R()
-
-  conn = sqlite3.connect("operon_pairwise_relation.db")
-
-
-  #G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
-  #printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
-  #printGraphProperty(G_sim_top_10, 'sim_top_10')
-  #G_sim_top_10.clear()
-
-  #G_sim_top_30 = buildSimilarityGraph_top_30(conn, EdgeLimit)
-  #printSubgraphProperty(G_sim_top_30, 'sim_top_30', regulon_set)
-  #printGraphProperty(G_sim_top_30, 'sim_top_30')
-  #G_sim_top_30.clear()
-
-  G_crs_top_10 = buildCrsGraph_top_10(conn, EdgeLimit)
-  #printSubgraphProperty(G_crs_top_10, 'crs_top_10', regulon_set)
-  #printGraphProperty(G_crs_top_10, 'crs_top_10')
-  #G_crs_top_10.clear()
-
-  #pdf = PdfPages("LexA_crs.pdf")
-  pdf = PdfPages("PhoP_crs.pdf")
+def print_pdf_graph(file_f, regulon, conn):
+  pdf = PdfPages(file_f)
   edgesLimits = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-  CRP = regulon_set['PhoP']
+  #CRP = regulon_set['LexA']
   for lim in edgesLimits:
     print lim
-    g = buildCrsGraph_top_30(conn, lim)
+    g = buildSimilarityGraph_top_10_v2(conn, lim)
 
-    node_color = [ 1 if node in CRP else 0 for node in g ]
+    # Here the node is motif, eg 87878787_1, the first 8 digits represent gi
+    node_color = [ 1 if node[0:8] in regulon else 0 for node in g ]
 
     pos = nx.graphviz_layout(g, prog="neato")
     plt.figure(figsize=(10.0, 10.0))
@@ -223,6 +202,84 @@ if __name__== "__main__":
     pdf.savefig()
     plt.close()
 
-  conn.close()
   pdf.close()
 
+if __name__== "__main__":
+  import networkx as nx
+  import sys
+  import os
+  import random
+  from pprint import pprint
+  from matplotlib.backends.backend_pdf import PdfPages
+  import matplotlib.pyplot as plt
+
+  EdgeLimit = 5e5
+  RegulonSizeCutoff = 20
+  #RandomSampleSize = 100
+  #operons = readOperonSet()
+  #pprint(operons)
+  #print len(operons)
+
+  regulon_set = readRegulon()
+  regulon_g2r = readRegulonG2R()
+
+  conn = sqlite3.connect("top_10_motif_graph.db")
+
+
+  #G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
+  #printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
+  #printGraphProperty(G_sim_top_10, 'sim_top_10')
+  #G_sim_top_10.clear()
+
+  #G_sim_top_10 = buildSimilarityGraph_top_10(conn, EdgeLimit)
+  #printSubgraphProperty(G_sim_top_10, 'sim_top_10', regulon_set)
+  #printGraphProperty(G_sim_top_10, 'sim_top_10')
+  #G_sim_top_10.clear()
+
+  #G_sim_top_30 = buildSimilarityGraph_top_30(conn, EdgeLimit)
+  #printSubgraphProperty(G_sim_top_30, 'sim_top_30', regulon_set)
+  #printGraphProperty(G_sim_top_30, 'sim_top_30')
+  #G_sim_top_30.clear()
+
+  #G_crs_top_10 = buildCrsGraph_top_10(conn, EdgeLimit)
+  #printSubgraphProperty(G_crs_top_10, 'crs_top_10', regulon_set)
+  #printGraphProperty(G_crs_top_10, 'crs_top_10')
+  #G_crs_top_10.clear()
+
+  for (reg, gene_set) in regulon_set.items():
+    if len(gene_set) > RegulonSizeCutoff:
+      file_name = "similarity_" + reg + ".pdf"
+      print_pdf_graph(file_name, gene_set, conn)
+      
+  conn.close()
+
+
+
+#  pdf = PdfPages("LexA_similarity.pdf")
+#  edgesLimits = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+#  CRP = regulon_set['LexA']
+#  for lim in edgesLimits:
+#    print lim
+#    g = buildSimilarityGraph_top_10_v2(conn, lim)
+#
+#    node_color = [ 1 if node in CRP else 0 for node in g ]
+#
+#    pos = nx.graphviz_layout(g, prog="neato")
+#    plt.figure(figsize=(10.0, 10.0))
+#    plt.axis("off")
+#    nx.draw(g,
+#        pos,
+#        node_color = node_color,
+#        node_size = 20,
+#        alpha=0.8,
+#        with_labels=False,
+#        cmap=plt.cm.jet,
+#        vmax=1.0,
+#        vmin=0.0
+#        )
+#    pdf.savefig()
+#    plt.close()
+#
+#  conn.close()
+#  pdf.close()
+#
