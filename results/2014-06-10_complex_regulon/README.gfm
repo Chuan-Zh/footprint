@@ -1,0 +1,6 @@
+Complex Regulon
+================================
+
+Complex regulon is the overlap of regulons. 
+Generate complex regulons and see if we can predict that accurately.
+python complex_regulon.py > complex_regu_from_larger_than_20_regulon.txt
