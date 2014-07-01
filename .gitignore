@@ -24,6 +24,8 @@ tmp
 *.mcl
 *.txt
 *.db
+*.fasta
+*.closures
 
 function_relatedness_hongwei_NAR_2005
 2013-10-10/reg_table_0.5sim.txt
