@@ -1,0 +1,38 @@
+2014-06-29 check the results of bobro
+-----------------------------------------
+Get bobro data from zcluster: /home/xynlab/zchuan/footprint/run_bobro/top_20_inter_12_20_top_10
+top 20 intergenetic promoters with a operon similarity score, find motif of length from 12 to 20 and keep only the top 10 motif.
+data/2014-06-29_motif_finding_result
+
+First picked some members of PurR and CRP, and get their motif finding results
+from ortholog promoters.
+Original results in: top_20_inter_12_20_top_10
+picked_regulon.txt
+
+Draw all the motifs logos and pick the one match with the real regulon motif
+pick_CRP
+pick_PurR
+
+Check the pairwise bbc compare results from
+../2014-05-21/top_10_motif_graph.tsv
+check_PurR
+
+
+For PurR, 5 out of 8 operon have the right motif:
+16129025_6
+16130248_3
+16130424_7
+16128507_4
+16128507_7
+16129616_1
+And all these motifs contains sites from E.coli.
+There should be at least 10 pairs be in the graph:
+16129025_6  Not found
+16130248_3 with 16130424_7 16128507_4 16129616_1
+16130424_7 with 16128507_4 16129616_1
+16128507_4 with 16129616_1
+Seems pretty good.
+
+
+
+go.sh
