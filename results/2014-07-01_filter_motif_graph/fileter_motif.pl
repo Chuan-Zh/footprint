@@ -8,9 +8,10 @@ my $clos_d = "top_20_inter_12_20_top_10";
 my @files = glob "$clos_d/*";
 #@files = ("49176004.closures");
 
-my $graph_f = "top_10_inter_12-20_top_10_motif.tsv";
+my $graph_f = "top_20_inter_12-20_top_10_motif.tsv";
 
 # motif id is gi_order, like 96139161_2
+# record the motifs that contain a site in Ecoli
 my %keeped_motif;
 
 foreach my $f (@files) {
@@ -36,15 +37,32 @@ foreach my $f (@files) {
 }
 #print Dumper \%keeped_motif;
 
+my $bbs_result_f = "bbs_motif_scan.tsv";
+my %motif_zscore;
+my %motif_pvalue;
+my %motif_enrich;
+open IN, $bbs_result_f or die "Cannot open $bbs_result_f: $!";
+my $fl = <IN>;
+
+while(<IN>) {
+  chomp;
+  my @it = split(/\t/, $_);
+  $motif_pvalue{$it[0]} = $it[1];
+  $motif_zscore{$it[0]} = $it[2];
+  $motif_enrich{$it[0]} = $it[3];
+}
+close IN;
+
+
 open IN, $graph_f or die "Cannot open $graph_f: $!";
 my $fisrt_line = <IN>;
-print $fisrt_line;
 while(<IN>) {
   chomp;
   my @items = split(/\t/, $_);
   #print $items[0], "\n";
   # require both motif contains sites from E.coli
-  if(defined $keeped_motif{$items[0]} and defined $keeped_motif{$items[1]}) {
+  if(defined $keeped_motif{$items[0]} and defined $keeped_motif{$items[1]}
+      and $motif_pvalue{$items[0]} < 1e-5 and $motif_pvalue{$items[1]} < 1e-5) {
     print $_, "\n";
   }
 }

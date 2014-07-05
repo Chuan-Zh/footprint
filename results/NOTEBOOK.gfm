@@ -34,5 +34,7 @@ Get bobro data from zcluster: /home/xynlab/zchuan/footprint/run_bobro/top_20_int
 top 20 intergenetic promoters with a operon similarity score, find motif of length from 12 to 20 and keep only the top 10 motif.
 data/2014-06-29_motif_finding_result
 
-
+2014-07-01 filter motif graph
+--------------------------------------------
+Filter all the motifs found, keep ones contain a site from E.coli and significant in E.coli genome.
 

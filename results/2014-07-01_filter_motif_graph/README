@@ -1,6 +1,5 @@
 Filter out the motifs that does not contains sites from E.coli, use the new graph for clustering.
 
-Check the distribution of similarity and zscore.
 
 The original graph is top_20_inter_12-20_top_10_motif.tsv, top 20 sequences of intergeneric region,
 motif lenght 12 - 20, keep top 10 motifs.
@@ -8,4 +7,14 @@ motif lenght 12 - 20, keep top 10 motifs.
 All closures files:
 top_20_inter_12_20_top_10
 
+
+Filter out the motifs that are not significant in E.coli genome.
+Scan all found motifs in the E.coli promoter sequences, with whole genomes as background.
+Get the p-value, zscore and enrichment for each motifs, find some cutoff to remove 
+non-significant motifs.
+working dir: bbs_results
+summary file: bbs_motif_scan.tsv
+go.pl
+
+The filtered graph is:
 python filter_motif.py > filtered_graph_top_20_inter_12-20_top_10_motif.tsv
