@@ -38,3 +38,5 @@ data/2014-06-29_motif_finding_result
 --------------------------------------------
 Filter all the motifs found, keep ones contain a site from E.coli and significant in E.coli genome.
 
+2014-07-06 check filtered motif graph with MCL and top edge analysis
+-------------------------------------------

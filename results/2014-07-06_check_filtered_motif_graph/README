@@ -1,9 +1,14 @@
 Check the filtered motif graph by adding edges progressively
 
 python tsv2db.py
+python regulon_cluster_by_top_edges.py
 
 filtered_graph_top_20_inter_12-20_top_10_motif.tsv
-regulon_cluster_by_top_edges.py
 top_10_motif_graph.db
 tsv2db.py
 tsv2db.py~
+
+MCL clustering and check cluster and regulon overlap
+
+Checked the distribution of similarity and zscore 
+stat/stat.r

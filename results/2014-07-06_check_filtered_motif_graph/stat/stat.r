@@ -1,0 +1,15 @@
+dd <- read.table("filtered_graph_top_20_inter_12-20_top_10_motif.tsv", header=F)
+head(dd)
+names(dd)
+names(dd) <- c('m1', 'm2', 'similarity', 'zscore', 'V5', 'V6', 'V7', 'count', 'in_regulon')
+dd$in_or_not = dd$count > 0
+gg <- ggplot(data=dd)
+gg + geom_density(aes(x=zscore, color=in_or_not))
+gg + geom_density(aes(x=similarity, color=in_or_not))
+gg + geom_density(aes(x=zscore, color=in_or_not))
+gg + geom_density(aes(x=zscore, color=in_or_not)) + head("zscore_dist")
+gg + geom_density(aes(x=zscore, color=in_or_not))
+dev.copy2pdf(file="zscore_density.pdf")
+gg + geom_density(aes(x=similarity, color=in_or_not))
+dev.copy2pdf(file="similarity_density.pdf")
+
