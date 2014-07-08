@@ -2,6 +2,7 @@ Check the filtered motif graph by adding edges progressively
 
 python tsv2db.py
 python regulon_cluster_by_top_edges.py
+regulon_cluster_pdf
 
 filtered_graph_top_20_inter_12-20_top_10_motif.tsv
 top_10_motif_graph.db
@@ -9,6 +10,15 @@ tsv2db.py
 tsv2db.py~
 
 MCL clustering and check cluster and regulon overlap
+run_mcl.pl
+mcl_cluster
+
+run_mcl_with_cut.pl
+mcl_cluster_z8_s.3
 
 Checked the distribution of similarity and zscore 
 stat/stat.r
+
+If we only keep the edges that are marked in the same regulon, then the clustering is very good. So removing false edges is a promising way.
+test_graph.tsv
+mcl_cluster_test

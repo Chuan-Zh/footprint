@@ -5,6 +5,7 @@ use warnings;
 
 my $graph_f = "filtered_graph_top_20_inter_12-20_top_10_motif.tsv";
 my $d = "mcl_cluster_z8_s.3";
+$d = "mcl_cluster_z8_s.5";
 
 my $cmd;
 my @gran = (1.2, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0);
@@ -12,7 +13,7 @@ $cmd = "mkdir $d";
 print $cmd;
 system $cmd unless -e $d;
 
-$cmd = "awk '{if(\$3>0.3 && \$4 > 8) print \$_}' $graph_f | cut -f1,2,4 > $d/table.abc";
+$cmd = "awk '{if(\$3>0.5 && \$4 > 8) print \$_}' $graph_f | cut -f1,2,4 > $d/table.abc";
 print $cmd, "\n";
 system $cmd;
 
