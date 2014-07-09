@@ -1,0 +1,37 @@
+clustering results
+===================================
+The test graph, only keep edges recored to be in a regulon, is nearly noiseless.
+data source:
+maqin@zcluster:~/Collaboration/RegulonPrediction/results/cluster-Qin-07062014
+
+MCL results seems to be better,  e.g. mcl_cluster_vs_regulon/edge_1_1.4.tsv
+Other method tend to output smaller cluster.
+
+
+perl runall.pl
+
+compare_regulon_cluster.py
+count_mcl_cluster_size.pl
+
+MCL
+mcl_cluster_vs_regulon
+
+with-index
+with_index_cluster_vs_regulon
+
+without-index
+without_index_cluster_vs_regulon
+
+
+http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+EASE Score, a modified Fisher Exact P-Value
+
+With compare_regulon_cluster.py:
+Compare a regulon (as operon set) with a mcl cluster(as set of motifs, 
+transfer to operon set) with hypergeometric distribution, overlap coefficient 
+(overlap_coe = |intersection(X, Y)| / min(|X|, |Y|) ) and 
+(overlap_coe2 = |intersection(X, Y)| / |union(X, Y)| ) .
+p-value corresponds to Fisher Exact test, EASE score is a modified Fisher Exact test.
+See http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+
+

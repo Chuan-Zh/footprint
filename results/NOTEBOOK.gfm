@@ -40,3 +40,10 @@ Filter all the motifs found, keep ones contain a site from E.coli and significan
 
 2014-07-06 check filtered motif graph with MCL and top edge analysis
 -------------------------------------------
+Check the filtered motif graph by adding edges progressively
+MCL clustering and check cluster and regulon overlap
+Checked the distribution of similarity and zscore 
+
+2014-07-09 motif cluster of test graph, compared with known regulon
+-------------------------------------------
+
