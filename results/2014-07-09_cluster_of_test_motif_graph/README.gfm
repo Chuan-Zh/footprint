@@ -1,28 +1,52 @@
 clustering results
 ===================================
+
+Data
+--------------------------------
 The test graph, only keep edges recored to be in a regulon, is nearly noiseless.
 data source:
 maqin@zcluster:~/Collaboration/RegulonPrediction/results/cluster-Qin-07062014
+edge_1 is for test graph similarity
+edge_2 is for test graph zscore
+edge_3 is for whole graph similarity
+edge_4 is for whole graph zscore
 
-MCL results seems to be better,  e.g. mcl_cluster_vs_regulon/edge_1_1.4.tsv
-Other method tend to output smaller cluster.
 
-
+Process
+------------------------------------
 perl runall.pl
-
+When run with different parameters, first run:
+bash clean_up_old_results.sh
+Change the parameters in 
 compare_regulon_cluster.py
 count_mcl_cluster_size.pl
+And then perl runall.pl
 
+Results
+-------------------------------------------
 MCL
 mcl_cluster_vs_regulon
+edge_1_2.0.tsv and edge_2_2.0.tsv work best.
+edge_3 and edge_4 work poor.
 
 with-index
 with_index_cluster_vs_regulon
+For edge_1, edge_1_J_K_300.tsv works best.
+For edge_2, edge_2_C_300.tsv do. edge_1 is better than edge_2.
+edge_3 and edge_4 work poor.
+
 
 without-index
 without_index_cluster_vs_regulon
+For edge_1, edge_1_300_K.tsv and edge_1_300.tsv work best, little worse than with-index method
+For edge_2, edge_2_300_K.tsv best.
+edge_3 and edge_4 work poor.
 
+Overall, MCL for edge_1_2.0.tsv works best. 
+edge_3 and edge_4 work poor.
 
+Score
+----------------------------------
 http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
 EASE Score, a modified Fisher Exact P-Value
 

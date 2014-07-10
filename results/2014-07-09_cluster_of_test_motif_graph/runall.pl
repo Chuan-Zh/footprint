@@ -13,7 +13,7 @@ while(my $f = readdir IN) {
   if($f =~ /^edge/) {
     #print "$f\n";
     my $cmd = "python compare_regulon_cluster.py $mcl_input_d/$f > $mcl_output_d/$f.tsv";
-    print $cmd;
+    print $cmd, "\n";
     system $cmd;
   }
 }
@@ -33,7 +33,7 @@ while(my $f = readdir IN) {
     system $cmd;
 
     $cmd = "python compare_regulon_cluster.py $no_index_input_d/$f.mcl > $no_index_output_d/$f.tsv";
-    print $cmd;
+    print $cmd, "\n";
     system $cmd;
   }
 }
@@ -52,7 +52,7 @@ while(my $f = readdir IN) {
     system $cmd;
 
     $cmd = "python compare_regulon_cluster.py $with_index_input_d/$f.mcl > $with_index_output_d/$f.tsv";
-    print $cmd;
+    print $cmd, "\n";
     system $cmd;
   }
 }
