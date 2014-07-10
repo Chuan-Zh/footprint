@@ -3,6 +3,8 @@ Check the filtered motif graph
 
 The filtered graph is:
 filtered_graph_top_20_inter_12-20_top_10_motif.tsv
+3046 nodes
+220709 edges
 
 Check the filtered motif graph by adding edges progressively
 
@@ -22,5 +24,7 @@ Checked the distribution of similarity and zscore
 stat/stat.r
 
 If we only keep the edges that are marked in the same regulon, then the clustering is very good. So removing false edges maybe a promising way.
+774 nodes
+4108 edges
 test_graph.tsv
 mcl_cluster_test
