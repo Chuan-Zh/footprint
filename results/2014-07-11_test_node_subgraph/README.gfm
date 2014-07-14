@@ -1,0 +1,7 @@
+Node subgraph
+=================================
+
+For all operons knowns to be in some regulon, generate a subgraph of these nodes from the motif graph.
+This is different from the previous test graph, which is edges induced.
+node_subgraph.tsv
+24876 edges, 688 nodes. 4108 edges connect nodes from same regulon.
