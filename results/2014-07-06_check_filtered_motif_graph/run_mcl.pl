@@ -9,6 +9,8 @@ my $d = "mcl_cluster";
 $graph_f = "test_graph.tsv";
 $d = "mcl_cluster_test";
 
+$graph_f = "node_subgraph.tsv";
+$d = "mcl_cluster_node_subgraph";
 
 my $cmd;
 my @gran = (1.2, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0);

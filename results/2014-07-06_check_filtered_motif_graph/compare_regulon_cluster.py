@@ -87,7 +87,8 @@ if __name__ == "__main__":
         coe2 = overlap/float(union)
 
         # and or or, control the output results
-        if coe1 < 0.1 and coe2 < 0.1: continue
+        if coe1 < 0.1 or coe2 < 0.1: continue
+        if overlap == 1: continue
 
         rv = hypergeom(OPERON_COUNT, reg_size, clu_size)
 
