@@ -1,0 +1,48 @@
+clustering results
+===================================
+
+Data
+--------------------------------
+The node subgraph graph, only keep nodes recored to be in a regulon
+data source: mail from Qin
+edge_1 is for graph similarity
+edge_2 is for graph zscore
+
+
+Process
+------------------------------------
+perl runall.pl
+When run with different parameters, first run:
+bash clean_up_old_results.sh
+Change the parameters in 
+compare_regulon_cluster.py
+count_mcl_cluster_size.pl
+And then perl runall.pl
+
+Results
+-------------------------------------------
+MCL
+
+with-index
+
+
+without-index
+without_index_cluster_vs_regulon
+edge_1_300.tsv is best
+about 21 regulon are found, 19 in the top 100 clusters.
+
+
+Score
+----------------------------------
+http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+EASE Score, a modified Fisher Exact P-Value
+
+With compare_regulon_cluster.py:
+Compare a regulon (as operon set) with a mcl cluster(as set of motifs, 
+transfer to operon set) with hypergeometric distribution, overlap coefficient 
+(overlap_coe = |intersection(X, Y)| / min(|X|, |Y|) ) and 
+(overlap_coe2 = |intersection(X, Y)| / |union(X, Y)| ) .
+p-value corresponds to Fisher Exact test, EASE score is a modified Fisher Exact test.
+See http://david.abcc.ncifcrf.gov/content.jsp?file=functional_annotation.html
+
+
