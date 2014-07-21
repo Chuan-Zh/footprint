@@ -1,0 +1,13 @@
+Expand the Cluster to the Whole Motif Graph
+===============================
+
+Original clustering result:
+edge_1_300.mcl
+
+Whole motif graph:
+whole_graph.tsv
+
+Expanding script (used tsv2db.py to build a database):
+expand_cluster.py
+python expand_cluster.py > expaned_edge_1_300.mcl
+
