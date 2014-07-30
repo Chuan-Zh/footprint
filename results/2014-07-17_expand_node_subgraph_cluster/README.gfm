@@ -9,5 +9,7 @@ whole_graph.tsv
 
 Expanding script (used tsv2db.py to build a database):
 expand_cluster.py
-python expand_cluster.py > expaned_edge_1_300.mcl
+python expand_cluster.py > expanded_edge_1_300.mcl
 
+Compare expanded cluster with regulon:
+python compare_cluster_with_regulon.py expanded_edge_1_300.mcl

@@ -1,0 +1,6 @@
+Expand Cluster with BBS scan result 
+-----------------------------------------------
+
+For each original cluster, pick a representative moitf. 
+Scan all sites of this moitf on Ecoli genome and use all the genes contain 
+one of these sites as the new members of this cluster.
