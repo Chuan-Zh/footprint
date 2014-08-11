@@ -4,3 +4,19 @@ Expand Cluster with BBS scan result
 For each original cluster, pick a representative moitf. 
 Scan all sites of this moitf on Ecoli genome and use all the genes contain 
 one of these sites as the new members of this cluster.
+
+Steps:
+------------------
+cat bbs_results/*.motifinfo | grep '>' > bbs_results.tsv
+python expand_cluster_with_bbs.py > bbs_cluster.mcl
+python compare_regulon_cluster.py bbs_cluster.mcl > cluster_vs_regulon.tsv
+
+
+bbs_cluster.mcl
+bbs_results
+bbs_result.tsv
+cluster_vs_regulon.tsv
+compare_regulon_cluster.py
+edge_1_300.mcl
+README.gfm
+regulon_by_first_gene.txt

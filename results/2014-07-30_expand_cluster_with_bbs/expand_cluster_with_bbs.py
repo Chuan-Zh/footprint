@@ -33,7 +33,7 @@ if __name__ == "__main__":
     #for k in motif2sites.keys():
         #print(len(motif2sites[k]))
 
-    sys.exit()
+    #sys.exit()
     cluster_f = "edge_1_300.mcl"
     fh = open(cluster_f)
     for line in fh:
