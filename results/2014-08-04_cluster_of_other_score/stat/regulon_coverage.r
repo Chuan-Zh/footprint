@@ -29,6 +29,7 @@ pcs <- cleanScoreData("pcs_cluster_vs_regulon.tsv", type='pcs')
 
 dd <- rbind(bbs, crs, gfr, pcs) 
 write.table(dd, file="cluster_vs_regulon.tsv", sep="\t", row.names=F, quote=F)
+# dd <- read.table("cluster_vs_regulon.tsv", header=TRUE)
 
 reg_size = read.table("regulon_size.txt", header=TRUE)
 reg_size = reg_size[order(reg_size$size, decreasing=TRUE), ]
@@ -47,6 +48,14 @@ dev.copy2pdf(file="overlap_with_large_regulon.pdf")
 gg <- ggplot(data=dd_small)
 gg + geom_histogram(aes(x=regulon,y=overlap, fill=type), stat="identity", position='dodge') + theme(axis.text.x=element_text(angle=45))
 dev.copy2pdf(file="overlap_with_small_regulon.pdf")
+
+gg <- ggplot(data=dd)
+gg + geom_raster(aes(x=regulon, y=type, fill=overlap), stat="sum")
+dev.copy2pdf(file="heat_all_reg.pdf")
+
+gg <- ggplot(data=dd_large)
+gg + geom_raster(aes(x=regulon, y=type, fill=overlap), stat="sum")
+#dev.copy2pdf(file="heat_large_reg.pdf")
 
 
 q()
