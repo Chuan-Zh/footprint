@@ -1,0 +1,19 @@
+Regulon Coverage Score for Top n Clusters
+===================================
+Four cluster files:
+-----------------------------------
+bbs_cluster.mcl
+edge_1_300.mcl
+gfr.mcl
+pcs.mcl
+
+
+
+Main scripts
+------------------
+regulon_coverage_score.py
+go.pl
+
+Stat and Drawing
+-------------------
+stat

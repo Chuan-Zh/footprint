@@ -12,7 +12,7 @@ gfr.abc
 Our best clustering result is:
 without-index/edge_1_300, then expanded with BBS scan.
 
-Results for other two score with the same method:
+Results for other two score with the same method (from Qin):
 gfr_pcs_score
 
 Whole process:
