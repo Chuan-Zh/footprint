@@ -81,9 +81,3 @@ if __name__ == "__main__":
                         overlap_coe1(overlap, reg_size, len(top_n))
                         ))
 
-
-
-
-
-
-

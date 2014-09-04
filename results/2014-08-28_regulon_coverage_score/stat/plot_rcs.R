@@ -27,6 +27,10 @@ gg <- ggplot(fdd)
 gg + geom_boxplot(aes(x=as.factor(top_n), y=RCS, fill=score))
 dev.copy2pdf(file="RCS_boxplot.pdf")
 
-gg + geom_boxplot(aes(x=as.factor(top_n), y=overlap_coe, fill=score))
-dev.copy2pdf(file="overlap_coe_boxplot.pdf")
+gg + geom_boxplot(aes(x=as.factor(top_n), y=RCS, fill=score)) + theme_bw() + xlab("top n clusters")
+dev.copy2pdf(file="RCS_boxplot_0904.pdf")
+
+gg + geom_boxplot(aes(x=as.factor(top_n), y=overlap_coe, fill=score)) + theme_bw() + xlab("top n clusters") + ylab("overlap coefficient")
+#(overlap_coe = |intersection(X, Y)| / min(|X|, |Y|) )
+dev.copy2pdf(file="overlap_coe_boxplot_0904.pdf")
 

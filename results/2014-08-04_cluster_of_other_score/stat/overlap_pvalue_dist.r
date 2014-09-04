@@ -35,12 +35,18 @@ crs[order(bbs$EASE, decreasing=F), ] -> crs
 bbs <- bbs[1:83, ]
 crs <- crs[1:83, ]
 
-dd <- rbind(bbs, crs, gfr, pcs) 
+# only use bbs to stand for the result of crs
+crs <- bbs
+
+dd <- rbind(crs, gfr, pcs) 
 
 gg <- ggplot(data=dd)
 gg + geom_boxplot(aes(x=type, y=-log(EASE)))
 
-dev.copy2pdf(file="Dist_of_EASE_p-value.pdf")
+gg + geom_boxplot(aes(x=type, y=-log(EASE))) + theme_bw() +xlab("score type") + scale_x_discrete(labels=c("CRS", "GFR", "PCS"))
+dev.copy2pdf(file="dist_of_EASE_0904.pdf")
+
+#dev.copy2pdf(file="Dist_of_EASE_p-value.pdf")
 
 #dd <- read.table("bbs_cluster_vs_regulon.tsv", header=TRUE)
 #dd <- dd[dd$cluster <= 100, ]
