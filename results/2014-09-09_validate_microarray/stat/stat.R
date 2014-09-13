@@ -21,7 +21,6 @@ gg <- ggplot(data=dss)
 # dev.copy2pdf(file="percent_of_significant_overlap_p10-2.pdf")
 
 
-
 gg <- ggplot(data=dd)
 gg + geom_boxplot(aes(x=cluType, y=-log(bicSmall), fill=bicType))
 
