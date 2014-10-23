@@ -1,0 +1,15 @@
+Validate cluster with gene co-expression data
+==========================================
+
+Four kind of clusters
+---------------------------
+bbs_cluster.mcl
+edge_1_300.mcl
+gfr.mcl
+pcs.mcl
+
+Gene expression bicluster
+------------------------------
+co-expression-validation-09072014
+
+
