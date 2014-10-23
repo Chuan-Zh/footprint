@@ -1,0 +1,17 @@
+Compare of four kind of clusters with microarry
+============================================
+
+Use score from supplement
+----------------------------
+bicAll_1000.pdf
+bicAll.pdf
+
+Only use Positive gene set for each bicluster
+--------------------------
+bicPos_1000.pdf
+bicPos.pdf
+
+The smallest p-value for each cluster
+----------------------------
+bicPosSmall.pdf
+bicsmall.pdf

@@ -1,0 +1,14 @@
+Got the clustering results of other two score
+====================================
+
+partial correlation score (PCS) and gene functional relatedness (GFR)
+pcs.tsv
+gfr.tsv
+
+Ready for MCL or other clustering software:
+pcs.abc
+gfr.abc
+
+Our best clustering result is:
+without-index/edge_1_300, then expanded with BBS scan.
+
