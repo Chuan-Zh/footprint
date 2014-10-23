@@ -18,6 +18,9 @@ gg + geom_bar(aes(x=cluType, y=percent, fill=bicType), position='dodge', stat="i
 gg + geom_bar(aes(x=cluType, y=percent, fill=bicType), position='dodge', stat="identity") + labs(x='', y="Percentage of enriched clusters") + labs(fill = "") + scale_x_discrete(labels=c("CRS", "GFR", "PCS")) + theme_bw()
 # dev.copy2pdf(file="percent_of_significant_overlap_p10-3.pdf")
 
+gg + geom_bar(aes(x=cluType, y=percent, fill=bicType), position='dodge', stat="identity") + labs(x='', y="Percentage of supported clusters") + labs(fill = "") + scale_x_discrete(labels=c("CRS", "GFR", "PCS")) + theme_bw()
+# dev.copy2pdf(file="percent_of_supported_clusters_p10-3.pdf")
+
 gg + geom_bar(aes(x=cluType, y=percent01, fill=bicType), position='dodge', stat="identity")
 gg + geom_bar(aes(x=cluType, y=percent01, fill=bicType), position='dodge', stat="identity") + labs(x='', y="Percentage of enriched clusters") + labs(fill = "") + scale_x_discrete(labels=c("CRS", "GFR", "PCS")) + theme_bw()
 # dev.copy2pdf(file="percent_of_significant_overlap_p10-2.pdf")

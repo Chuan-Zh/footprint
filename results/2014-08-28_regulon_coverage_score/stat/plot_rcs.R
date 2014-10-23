@@ -2,6 +2,10 @@
 library(ggplot2)
 library(dplyr)
 
+######################################
+#Figure 6 RCS_boxplot_0904.pdf
+######################################
+
 
 d1 <- read.table("rcs_bbs_cluster.tsv", header=T)
 d1$score <- "BBS"

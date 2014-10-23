@@ -1,5 +1,8 @@
 library(ggplot2)
-
+################################
+#Figure 1(a)reg_size_dist_bin1.pdf
+#Figure 1(b)orth_opr_count_less216_bin1.pdf
+################################
 # regulon size #
 dd <- read.table("regulon_size.txt", header=F)
 names(dd) <- c("reg", "size")

@@ -1,4 +1,9 @@
 library(ggplot2)
+#######################
+#
+#Figure 4 transitivity_compare.pdf
+#
+######################
 dd<-read.table("regulon_subgraph_property.tsv", header=T)
 p <- ggplot(dd, aes(factor(score), transitivity))
 p + geom_boxplot(aes(fill=factor(type)))

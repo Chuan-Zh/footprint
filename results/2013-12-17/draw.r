@@ -1,4 +1,8 @@
 #!/usr/bin/env R
+#################################
+#Figure3 top_edge_analysis_3_score_no_similarity.pdf
+#
+#################################
 dd <- read.table("top_edge_analysis_cmp_hw_500.tsv", header=T)
 library(ggplot2)
 step = 1:50
@@ -27,6 +31,6 @@ sub_dd <- dd[ dd$type %in% score_to_keep, ]
 gg <- ggplot(aes(x=step, y=inRegEdge), data=sub_dd)
 gg + geom_line(aes(group = type, color=type), size = 1)
 gg + geom_line(aes(group = type, color=type), size = 1) + theme_bw() + scale_colour_discrete(labels=c("GFR", "PCS", "CRS", "random"), name="score type") + xlab("top n edges") + ylab("edges connect operons in regulon") + theme(legend.position=c(.2, .8))
-dev.copy2pdf(file="top_edge_analysis_cmp_3_score.pdf")
+dev.copy2pdf(file="top_edge_analysis_cmp_3_score_no_similarity.pdf")
   
 
